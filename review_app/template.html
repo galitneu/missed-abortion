@@ -1,0 +1,804 @@
+<title>סקירת קידוד — הפלה נדחית</title>
+<style>
+  :root {
+    --bg: #eef1ec;
+    --surface: #ffffff;
+    --surface-2: #e2e8e0;
+    --surface-3: #d5ddd2;
+    --text: #17211b;
+    --text-muted: #56645b;
+    --accent: #0f6e5c;
+    --accent-strong: #0b5548;
+    --accent-soft: #d7ebe4;
+    --border: #c7d0c3;
+    --good: #2e7d4f;
+    --good-soft: #dcefe1;
+    --warn: #966a1e;
+    --warn-soft: #f5e9d2;
+    --critical: #a63a3a;
+    --critical-soft: #f6dede;
+    --shadow: 0 1px 2px rgba(23, 33, 27, 0.06), 0 4px 14px rgba(23, 33, 27, 0.05);
+    --mono: ui-monospace, "SF Mono", "Cascadia Mono", "Roboto Mono", Consolas, monospace;
+    --sans: "Segoe UI", "Arial Hebrew", Arial, "Helvetica Neue", sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #10140f;
+      --surface: #161c15;
+      --surface-2: #1e261c;
+      --surface-3: #2a3327;
+      --text: #e7ece5;
+      --text-muted: #9caa96;
+      --accent: #4fd9b8;
+      --accent-strong: #79e6cb;
+      --accent-soft: #1c352e;
+      --border: #303b2c;
+      --good: #52c07e;
+      --good-soft: #1c3324;
+      --warn: #e0ab4a;
+      --warn-soft: #3a2f16;
+      --critical: #e08080;
+      --critical-soft: #3a2020;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 4px 18px rgba(0, 0, 0, 0.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f;
+    --surface: #161c15;
+    --surface-2: #1e261c;
+    --surface-3: #2a3327;
+    --text: #e7ece5;
+    --text-muted: #9caa96;
+    --accent: #4fd9b8;
+    --accent-strong: #79e6cb;
+    --accent-soft: #1c352e;
+    --border: #303b2c;
+    --good: #52c07e;
+    --good-soft: #1c3324;
+    --warn: #e0ab4a;
+    --warn-soft: #3a2f16;
+    --critical: #e08080;
+    --critical-soft: #3a2020;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 4px 18px rgba(0, 0, 0, 0.35);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    direction: rtl;
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+  ::selection { background: var(--accent-soft); }
+  button { font-family: inherit; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .app { max-width: 1180px; margin: 0 auto; padding: 20px 22px 80px; }
+
+  /* ---- Gate screen ---- */
+  .gate {
+    max-width: 480px;
+    margin: 12vh auto 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    box-shadow: var(--shadow);
+    padding: 36px 34px 30px;
+    text-align: center;
+  }
+  .gate .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .gate h1 { font-size: 22px; margin: 0 0 6px; text-wrap: balance; }
+  .gate p.sub { color: var(--text-muted); font-size: 13.5px; margin: 0 0 26px; }
+  .gate input {
+    width: 100%;
+    padding: 11px 13px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    direction: rtl;
+    text-align: right;
+  }
+  .gate-actions { margin-top: 18px; display: flex; flex-direction: column; gap: 10px; }
+  .resume-note {
+    margin-top: 14px;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    background: var(--accent-soft);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 8px 10px;
+  }
+
+  /* ---- Top bar ---- */
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding-bottom: 16px;
+    margin-bottom: 18px;
+    border-bottom: 1px solid var(--border);
+  }
+  .brand { display: flex; align-items: baseline; gap: 10px; }
+  .brand .mark {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 2px;
+    padding: 2px 6px;
+  }
+  .brand h1 { font-size: 16px; font-weight: 600; margin: 0; }
+  .brand .reviewer { font-size: 12.5px; color: var(--text-muted); }
+
+  .phase-switch { display: flex; gap: 2px; background: var(--surface-2); border-radius: 4px; padding: 3px; }
+  .phase-switch button {
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    padding: 7px 16px;
+    border-radius: 3px;
+    font-size: 13px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  .phase-switch button.active { background: var(--surface); color: var(--accent-strong); box-shadow: var(--shadow); }
+  .phase-switch button[disabled] { opacity: 0.4; cursor: not-allowed; }
+
+  .topbar-right { display: flex; align-items: center; gap: 12px; }
+  .btn {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    padding: 8px 14px;
+    border-radius: 3px;
+    font-size: 13px;
+    cursor: pointer;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .btn:hover { border-color: var(--accent); color: var(--accent-strong); }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #ffffff; }
+  .btn.primary:hover { background: var(--accent-strong); border-color: var(--accent-strong); color: #ffffff; }
+  .btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+  /* ---- Progress strip ---- */
+  .progress-strip {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  .progress-cell { background: var(--surface); padding: 11px 14px; }
+  .progress-cell .num {
+    font-family: var(--mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.1;
+  }
+  .progress-cell .lbl { font-size: 11px; color: var(--text-muted); margin-top: 3px; }
+  .progress-bar-track { height: 4px; background: var(--surface-2); border-radius: 2px; overflow: hidden; margin-bottom: 20px; margin-top: -14px; }
+  .progress-bar-fill { height: 100%; background: var(--accent); transition: width 0.25s ease; }
+
+  /* ---- Episode card ---- */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface-2);
+  }
+  .card-head .id-block { display: flex; align-items: center; gap: 10px; }
+  .card-head .eid { font-family: var(--mono); font-weight: 700; font-size: 14px; letter-spacing: 0.02em; }
+  .card-head .meta { font-size: 12px; color: var(--text-muted); font-family: var(--mono); font-variant-numeric: tabular-nums; }
+  .badge {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 20px;
+    letter-spacing: 0.02em;
+  }
+  .badge.unanimous { background: var(--good-soft); color: var(--good); }
+  .badge.split { background: var(--warn-soft); color: var(--warn); }
+  .badge.mixup { background: var(--critical-soft); color: var(--critical); }
+
+  .card-body { display: grid; grid-template-columns: 1.1fr 0.9fr; }
+  @media (max-width: 860px) { .card-body { grid-template-columns: 1fr; } }
+
+  .source-pane {
+    padding: 18px;
+    border-left: 1px solid var(--border);
+    max-height: 520px;
+    overflow-y: auto;
+  }
+  .source-pane .pane-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); font-family: var(--mono); margin-bottom: 10px; }
+  .source-text {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    direction: rtl;
+    color: var(--text);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 14px;
+  }
+
+  .coding-pane { padding: 18px; }
+  .coding-pane .pane-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); font-family: var(--mono); margin-bottom: 10px; }
+
+  .outcome-block { background: var(--accent-soft); border: 1px solid var(--border); border-radius: 3px; padding: 14px 16px; margin-bottom: 14px; }
+  .outcome-block .outcome-title { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+  .outcome-block .quote { font-size: 12.5px; color: var(--text-muted); font-style: italic; margin-top: 8px; border-right: 2px solid var(--accent); padding-right: 8px; }
+
+  .coder-row { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+  .coder-chip {
+    font-size: 11.5px;
+    font-family: var(--mono);
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 5px 9px;
+  }
+  .coder-chip b { color: var(--text-muted); font-weight: 600; margin-left: 4px; }
+
+  .verdict-group { display: flex; gap: 8px; margin-top: 16px; }
+  .verdict-btn {
+    flex: 1;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    padding: 10px 8px;
+    border-radius: 3px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    color: var(--text-muted);
+  }
+  .verdict-btn.v-correct.on { background: var(--good-soft); border-color: var(--good); color: var(--good); }
+  .verdict-btn.v-incorrect.on { background: var(--critical-soft); border-color: var(--critical); color: var(--critical); }
+  .verdict-btn.v-unsure.on { background: var(--warn-soft); border-color: var(--warn); color: var(--warn); }
+
+  .note-field { margin-top: 10px; }
+  .note-field textarea {
+    width: 100%;
+    min-height: 56px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 13px;
+    padding: 8px 10px;
+    resize: vertical;
+    direction: rtl;
+  }
+
+  .nav-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 18px; border-top: 1px solid var(--border); background: var(--surface-2); }
+  .nav-row .pos { font-family: var(--mono); font-size: 12px; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+  .nav-btns { display: flex; gap: 8px; }
+
+  /* ---- Field table (phase 2) ---- */
+  .field-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .field-table th { text-align: right; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); font-weight: 600; padding: 8px 10px; border-bottom: 1px solid var(--border); }
+  .field-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .field-table tr.disagree td:first-child { box-shadow: inset 3px 0 0 var(--warn); }
+  .field-table tr.flagged td:first-child { box-shadow: inset 3px 0 0 var(--critical); }
+  .field-table .fval { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+  .field-table .fcoders { font-family: var(--mono); font-size: 11px; color: var(--text-muted); }
+  .flag-toggle {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    border-radius: 3px;
+    padding: 4px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+  .flag-toggle.on { background: var(--critical-soft); border-color: var(--critical); color: var(--critical); }
+  .field-note { margin-top: 6px; }
+  .field-note input {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 5px 8px;
+    font-size: 12px;
+    background: var(--bg);
+    color: var(--text);
+    direction: rtl;
+  }
+
+  .empty-state { text-align: center; padding: 60px 20px; color: var(--text-muted); }
+  .empty-state .big { font-size: 40px; margin-bottom: 10px; }
+
+  .toast {
+    position: fixed;
+    bottom: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--text);
+    color: var(--bg);
+    padding: 10px 18px;
+    border-radius: 4px;
+    font-size: 13px;
+    box-shadow: var(--shadow);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 50;
+  }
+  .toast.show { opacity: 1; }
+</style>
+
+<div id="root"></div>
+
+<div class="toast" id="toast"></div>
+
+<script id="review-data" type="application/json">__REVIEW_DATA__</script>
+
+<script>
+(function () {
+  var DATA = JSON.parse(document.getElementById("review-data").textContent);
+  var STORAGE_PREFIX = "mac_review_v1_";
+  var root = document.getElementById("root");
+  var toastEl = document.getElementById("toast");
+  var toastTimer = null;
+
+  function showToast(msg) {
+    toastEl.textContent = msg;
+    toastEl.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toastEl.classList.remove("show"); }, 2200);
+  }
+
+  function esc(s) {
+    if (s === null || s === undefined) return "";
+    return String(s)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function fmtVal(v) {
+    if (v === null || v === undefined) return "—";
+    if (v === true) return "כן";
+    if (v === false) return "לא";
+    return esc(v);
+  }
+
+  // ---------- state ----------
+  var state = {
+    reviewerName: null,
+    phase: 1,
+    phase1Index: 0,
+    phase2Index: 0,
+    phase1: {},   // episode_id -> {verdict, note}
+    phase2: {},   // episode_id -> {fields: {field: {flagged, note}}}
+  };
+
+  function storageKey(name) { return STORAGE_PREFIX + name; }
+
+  function loadState(name) {
+    try {
+      var raw = localStorage.getItem(storageKey(name));
+      if (raw) {
+        var parsed = JSON.parse(raw);
+        state.phase1 = parsed.phase1 || {};
+        state.phase2 = parsed.phase2 || {};
+        state.phase1Index = parsed.phase1Index || 0;
+        state.phase2Index = parsed.phase2Index || 0;
+        state.phase = parsed.phase || 1;
+        return true;
+      }
+    } catch (e) {}
+    return false;
+  }
+
+  function saveState() {
+    if (!state.reviewerName) return;
+    try {
+      localStorage.setItem(storageKey(state.reviewerName), JSON.stringify({
+        phase1: state.phase1, phase2: state.phase2,
+        phase1Index: state.phase1Index, phase2Index: state.phase2Index,
+        phase: state.phase,
+      }));
+    } catch (e) {}
+  }
+
+  var phase2Episodes = DATA.filter(function (e) { return e.phase2; });
+
+  function phase1Done() { return Object.keys(state.phase1).length; }
+  function phase2Done() {
+    var n = 0;
+    phase2Episodes.forEach(function (e) {
+      if (state.phase2[e.episode_id] && state.phase2[e.episode_id].submitted) n++;
+    });
+    return n;
+  }
+
+  // ---------- gate screen ----------
+  function renderGate() {
+    var known = [];
+    try {
+      for (var i = 0; i < localStorage.length; i++) {
+        var k = localStorage.key(i);
+        if (k && k.indexOf(STORAGE_PREFIX) === 0) known.push(k.slice(STORAGE_PREFIX.length));
+      }
+    } catch (e) {}
+
+    root.innerHTML =
+      '<div class="gate">' +
+        '<div class="eyebrow">קידוד הפלה נדחית &middot; סקירת רופא/ה</div>' +
+        '<h1>סקירת קידוד קליני</h1>' +
+        '<p class="sub">' + DATA.length + ' אפיזודות קודדו ע"י 3 סוכני AI עצמאיים. המשימה: לאמת את הסיווג הראשי, ובאפיזודות הצלחה/כישלון — גם את השדות שחולצו.</p>' +
+        '<input id="name-input" type="text" placeholder="שם מלא" autocomplete="off" />' +
+        '<div class="gate-actions"><button class="btn primary" id="start-btn">התחל/י סקירה</button></div>' +
+        (known.length ? '<div class="resume-note">נמצאה התקדמות שמורה עבור: ' + known.map(esc).join(', ') + ' — הקלד/י אותו שם כדי להמשיך מהמקום שעצרת.</div>' : '') +
+      '</div>';
+
+    var input = document.getElementById("name-input");
+    var startBtn = document.getElementById("start-btn");
+    input.addEventListener("keydown", function (e) { if (e.key === "Enter") startBtn.click(); });
+    startBtn.addEventListener("click", function () {
+      var name = input.value.trim();
+      if (!name) { input.focus(); return; }
+      state.reviewerName = name;
+      loadState(name);
+      render();
+    });
+    setTimeout(function () { input.focus(); }, 50);
+  }
+
+  // ---------- export ----------
+  function buildExport() {
+    var phase1arr = Object.keys(state.phase1).map(function (id) {
+      return { episode_id: id, verdict: state.phase1[id].verdict, note: state.phase1[id].note || "" };
+    });
+    var phase2arr = Object.keys(state.phase2).map(function (id) {
+      var rec = state.phase2[id];
+      var fields = Object.keys(rec.fields || {}).map(function (f) {
+        return { field: f, flagged: !!rec.fields[f].flagged, note: rec.fields[f].note || "" };
+      });
+      return { episode_id: id, submitted: !!rec.submitted, fields: fields };
+    });
+    return {
+      reviewer_name: state.reviewerName,
+      exported_at: new Date().toISOString(),
+      phase1_reviewed: phase1arr.length,
+      phase1_total: DATA.length,
+      phase2_reviewed: phase2arr.filter(function (r) { return r.submitted; }).length,
+      phase2_total: phase2Episodes.length,
+      phase1: phase1arr,
+      phase2: phase2arr,
+    };
+  }
+
+  function doExport() {
+    var data = buildExport();
+    var filename = "review_" + state.reviewerName.replace(/\s+/g, "_") + "_" + new Date().toISOString().slice(0, 10) + ".json";
+    var payload = JSON.stringify(data, null, 2);
+    if (window.claude && window.claude.downloads) {
+      window.claude.downloads.save({ filename: filename, data: payload })
+        .then(function () { showToast("הקובץ הורד בהצלחה"); })
+        .catch(function () { fallbackDownload(filename, payload); });
+    } else {
+      fallbackDownload(filename, payload);
+    }
+  }
+
+  function fallbackDownload(filename, payload) {
+    try {
+      var blob = new Blob([payload], { type: "application/json" });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement("a");
+      a.href = url; a.download = filename;
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast("הקובץ הורד בהצלחה");
+    } catch (e) {
+      showToast("שגיאה בהורדה — נסה/י שוב");
+    }
+  }
+
+  // ---------- top bar ----------
+  function renderTopbar() {
+    var p1d = phase1Done(), p2d = phase2Done();
+    return (
+      '<div class="topbar">' +
+        '<div class="brand">' +
+          '<span class="mark">MAC-REVIEW</span>' +
+          '<h1>סקירת קידוד — הפלה נדחית</h1>' +
+          '<span class="reviewer">' + esc(state.reviewerName) + '</span>' +
+        '</div>' +
+        '<div class="phase-switch">' +
+          '<button data-phase="1" class="' + (state.phase === 1 ? "active" : "") + '">שלב 1 · סיווג ראשי</button>' +
+          '<button data-phase="2" class="' + (state.phase === 2 ? "active" : "") + '" ' + (phase2Episodes.length ? "" : "disabled") + '>שלב 2 · שדות (הצלחה/כישלון)</button>' +
+        '</div>' +
+        '<div class="topbar-right">' +
+          '<button class="btn" id="export-btn">⬇ ייצוא תשובות</button>' +
+          '<button class="btn" id="switch-user-btn">החלף/י משתמש/ת</button>' +
+        '</div>' +
+      '</div>' +
+      '<div class="progress-strip">' +
+        progressCell(p1d, DATA.length, "שלב 1 הושלם") +
+        progressCell(p2d, phase2Episodes.length, "שלב 2 הושלם") +
+        progressCell(countVerdict("incorrect"), null, "סומנו לא-תקין (שלב 1)") +
+        progressCell(countFlagged(), null, "שדות שסומנו בעייתיים") +
+        progressCell(countMixupConfirmed(), null, "חשד ערבוב שאושר") +
+      '</div>'
+    );
+  }
+
+  function progressCell(n, total, label) {
+    return '<div class="progress-cell"><div class="num">' + n + (total !== null ? ' <span style="font-size:13px;color:var(--text-muted);font-weight:400;">/ ' + total + '</span>' : '') + '</div><div class="lbl">' + label + '</div></div>';
+  }
+
+  function countVerdict(v) {
+    return Object.keys(state.phase1).filter(function (id) { return state.phase1[id].verdict === v; }).length;
+  }
+  function countFlagged() {
+    var n = 0;
+    Object.keys(state.phase2).forEach(function (id) {
+      var f = state.phase2[id].fields || {};
+      Object.keys(f).forEach(function (k) { if (f[k].flagged) n++; });
+    });
+    return n;
+  }
+  function countMixupConfirmed() {
+    return Object.keys(state.phase1).filter(function (id) {
+      var ep = DATA.find(function (e) { return e.episode_id === id; });
+      return ep && ep.possible_record_mixup && state.phase1[id].verdict !== "incorrect";
+    }).length;
+  }
+
+  // ---------- phase 1 ----------
+  function renderPhase1() {
+    if (!DATA.length) return '<div class="empty-state">אין אפיזודות</div>';
+    var idx = Math.min(state.phase1Index, DATA.length - 1);
+    var ep = DATA[idx];
+    var rec = state.phase1[ep.episode_id] || {};
+    var unanimous = ep.outcome_unanimous;
+
+    var badge = ep.possible_record_mixup
+      ? '<span class="badge mixup">חשד לערבוב רשומות</span>'
+      : (unanimous ? '<span class="badge unanimous">3/3 הסכמה</span>' : '<span class="badge split">אי-הסכמה בסיווג</span>');
+
+    var codersRow = ep.coders_outcome.map(function (o, i) {
+      return '<span class="coder-chip"><b>קודד ' + (i + 1) + '</b>' + esc(outcomeShort(o)) + '</span>';
+    }).join("");
+
+    var html =
+      '<div class="card">' +
+        '<div class="card-head">' +
+          '<div class="id-block"><span class="eid">' + esc(ep.episode_id) + '</span>' +
+          '<span class="meta">אשפוזים: ' + esc(ep.admission_nos.join(", ")) + ' &middot; גיל ' + esc(ep.age) + ' &middot; ' + esc((ep.entry_date || "").slice(0, 10)) + '</span></div>' +
+          badge +
+        '</div>' +
+        '<div class="card-body">' +
+          '<div class="source-pane"><div class="pane-label">רשומה קלינית מקורית</div><div class="source-text">' + esc(ep.text) + '</div></div>' +
+          '<div class="coding-pane">' +
+            '<div class="pane-label">סיווג ההכרעה</div>' +
+            '<div class="outcome-block">' +
+              '<div class="outcome-title">' + esc(ep.outcome_he) + '</div>' +
+              (ep.exclusion_he ? '<div style="font-size:12.5px;color:var(--text-muted);">סיבת החרגה: ' + esc(ep.exclusion_he) + '</div>' : '') +
+              (ep.outcome_evidence_quote ? '<div class="quote">"' + esc(ep.outcome_evidence_quote) + '"</div>' : '') +
+            '</div>' +
+            '<div class="pane-label">3 הקודדים העצמאיים</div>' +
+            '<div class="coder-row">' + codersRow + '</div>' +
+            (ep.possible_record_mixup ? '<div class="outcome-block" style="background:var(--critical-soft);"><b>חשד ערבוב רשומות:</b> ' + esc(ep.record_mixup_note || "") + '</div>' : '') +
+            (ep.notes ? '<div style="font-size:12.5px;color:var(--text-muted);margin-bottom:10px;">הערת קודד: ' + esc(ep.notes) + '</div>' : '') +
+            '<div class="pane-label">האם הסיווג הראשי נכון?</div>' +
+            '<div class="verdict-group">' +
+              '<button class="verdict-btn v-correct ' + (rec.verdict === "correct" ? "on" : "") + '" data-v="correct">✓ תקין</button>' +
+              '<button class="verdict-btn v-incorrect ' + (rec.verdict === "incorrect" ? "on" : "") + '" data-v="incorrect">✕ לא תקין</button>' +
+              '<button class="verdict-btn v-unsure ' + (rec.verdict === "unsure" ? "on" : "") + '" data-v="unsure">? לא בטוח/ה</button>' +
+            '</div>' +
+            '<div class="note-field"><textarea id="p1-note" placeholder="הערה (לא חובה)">' + esc(rec.note || "") + '</textarea></div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="nav-row">' +
+          '<div class="pos">אפיזודה ' + (idx + 1) + ' מתוך ' + DATA.length + '</div>' +
+          '<div class="nav-btns">' +
+            '<button class="btn" id="p1-prev" ' + (idx === 0 ? "disabled" : "") + '>&larr; קודם</button>' +
+            '<button class="btn primary" id="p1-next">' + (idx === DATA.length - 1 ? "סיום שלב 1" : "הבא &rarr;") + '</button>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+    return html;
+  }
+
+  function outcomeShort(o) {
+    var m = { open: "פתוח", not_applicable: "ל.רלוונטי", success: "הצלחה", failure: "כישלון", not_missed_abortion: "הוחרג" };
+    return m[o] || o || "—";
+  }
+
+  function bindPhase1() {
+    var ep = DATA[Math.min(state.phase1Index, DATA.length - 1)];
+    document.querySelectorAll(".verdict-btn").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var rec = state.phase1[ep.episode_id] || {};
+        rec.verdict = btn.getAttribute("data-v");
+        state.phase1[ep.episode_id] = rec;
+        saveState();
+        render();
+      });
+    });
+    var noteEl = document.getElementById("p1-note");
+    if (noteEl) {
+      noteEl.addEventListener("input", function () {
+        var rec = state.phase1[ep.episode_id] || {};
+        rec.note = noteEl.value;
+        state.phase1[ep.episode_id] = rec;
+        saveState();
+      });
+    }
+    var prevBtn = document.getElementById("p1-prev");
+    if (prevBtn) prevBtn.addEventListener("click", function () {
+      state.phase1Index = Math.max(0, state.phase1Index - 1);
+      saveState(); render();
+    });
+    var nextBtn = document.getElementById("p1-next");
+    if (nextBtn) nextBtn.addEventListener("click", function () {
+      if (!state.phase1[ep.episode_id]) { state.phase1[ep.episode_id] = { verdict: null, note: "" }; }
+      if (state.phase1Index === DATA.length - 1) {
+        showToast("שלב 1 הושלם — אפשר לעבור לשלב 2 או לייצא");
+        if (phase2Episodes.length) state.phase = 2;
+      } else {
+        state.phase1Index = Math.min(DATA.length - 1, state.phase1Index + 1);
+      }
+      saveState(); render();
+    });
+  }
+
+  // ---------- phase 2 ----------
+  function renderPhase2() {
+    if (!phase2Episodes.length) return '<div class="empty-state"><div class="big">—</div>אין אפיזודות הצלחה/כישלון לבדיקה</div>';
+    var idx = Math.min(state.phase2Index, phase2Episodes.length - 1);
+    var ep = phase2Episodes[idx];
+    var rec = state.phase2[ep.episode_id] || { fields: {} };
+
+    var rows = ep.fields.map(function (f) {
+      var fs = rec.fields[f.field] || {};
+      var cls = (f.disagree ? "disagree " : "") + (fs.flagged ? "flagged" : "");
+      return (
+        '<tr class="' + cls + '" data-field="' + f.field + '">' +
+          '<td>' + esc(f.label) + (f.disagree ? ' <span style="color:var(--warn);font-size:11px;">⚠ אי-הסכמה</span>' : '') + '</td>' +
+          '<td class="fval">' + fmtVal(f.value) + '</td>' +
+          '<td class="fcoders">' + f.coders.map(fmtVal).join(' &nbsp;/&nbsp; ') + '</td>' +
+          '<td><button class="flag-toggle ' + (fs.flagged ? "on" : "") + '" data-field="' + f.field + '">' + (fs.flagged ? "✕ סומן לא-תקין" : "סמן לא-תקין") + '</button>' +
+            (fs.flagged ? '<div class="field-note"><input type="text" data-field-note="' + f.field + '" placeholder="מה הבעיה?" value="' + esc(fs.note || "") + '" /></div>' : '') +
+          '</td>' +
+        '</tr>'
+      );
+    }).join("");
+
+    var html =
+      '<div class="card">' +
+        '<div class="card-head">' +
+          '<div class="id-block"><span class="eid">' + esc(ep.episode_id) + '</span>' +
+          '<span class="meta">' + esc(ep.outcome_he) + ' &middot; אשפוזים: ' + esc(ep.admission_nos.join(", ")) + '</span></div>' +
+          (rec.submitted ? '<span class="badge unanimous">נבדק</span>' : '') +
+        '</div>' +
+        '<div class="card-body" style="grid-template-columns: 1fr 1.3fr;">' +
+          '<div class="source-pane"><div class="pane-label">רשומה קלינית מקורית</div><div class="source-text">' + esc(ep.text) + '</div></div>' +
+          '<div class="coding-pane">' +
+            '<div class="pane-label">שדות שחולצו (ההכרעה מול כל קודד) — מסמנים רק מה שגוי</div>' +
+            '<div style="overflow-x:auto;"><table class="field-table"><thead><tr><th>שדה</th><th>הכרעה</th><th>קודד 1 / 2 / 3</th><th>סימון</th></tr></thead><tbody>' + rows + '</tbody></table></div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="nav-row">' +
+          '<div class="pos">אפיזודה ' + (idx + 1) + ' מתוך ' + phase2Episodes.length + ' (success/failure)</div>' +
+          '<div class="nav-btns">' +
+            '<button class="btn" id="p2-prev" ' + (idx === 0 ? "disabled" : "") + '>&larr; קודם</button>' +
+            '<button class="btn primary" id="p2-submit">שאר השדות תקינים — שמור והבא &rarr;</button>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+    return html;
+  }
+
+  function bindPhase2() {
+    var ep = phase2Episodes[Math.min(state.phase2Index, phase2Episodes.length - 1)];
+    function getRec() {
+      if (!state.phase2[ep.episode_id]) state.phase2[ep.episode_id] = { fields: {}, submitted: false };
+      return state.phase2[ep.episode_id];
+    }
+    document.querySelectorAll(".flag-toggle").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var field = btn.getAttribute("data-field");
+        var rec = getRec();
+        var fs = rec.fields[field] || {};
+        fs.flagged = !fs.flagged;
+        rec.fields[field] = fs;
+        saveState(); render();
+      });
+    });
+    document.querySelectorAll("[data-field-note]").forEach(function (input) {
+      input.addEventListener("input", function () {
+        var field = input.getAttribute("data-field-note");
+        var rec = getRec();
+        var fs = rec.fields[field] || {};
+        fs.note = input.value;
+        rec.fields[field] = fs;
+        saveState();
+      });
+    });
+    var prevBtn = document.getElementById("p2-prev");
+    if (prevBtn) prevBtn.addEventListener("click", function () {
+      state.phase2Index = Math.max(0, state.phase2Index - 1);
+      saveState(); render();
+    });
+    var submitBtn = document.getElementById("p2-submit");
+    if (submitBtn) submitBtn.addEventListener("click", function () {
+      var rec = getRec();
+      rec.submitted = true;
+      if (state.phase2Index === phase2Episodes.length - 1) {
+        showToast("שלב 2 הושלם — אפשר לייצא את התשובות");
+      } else {
+        state.phase2Index = Math.min(phase2Episodes.length - 1, state.phase2Index + 1);
+      }
+      saveState(); render();
+    });
+  }
+
+  // ---------- main render ----------
+  function render() {
+    if (!state.reviewerName) { renderGate(); return; }
+    root.innerHTML = renderTopbar() +
+      '<div class="progress-bar-track"><div class="progress-bar-fill" style="width:' + (100 * (state.phase === 1 ? phase1Done() / DATA.length : (phase2Episodes.length ? phase2Done() / phase2Episodes.length : 0))) + '%"></div></div>' +
+      (state.phase === 1 ? renderPhase1() : renderPhase2());
+
+    document.querySelectorAll(".phase-switch button").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var p = parseInt(btn.getAttribute("data-phase"), 10);
+        if (btn.disabled) return;
+        state.phase = p;
+        saveState(); render();
+      });
+    });
+    var exportBtn = document.getElementById("export-btn");
+    if (exportBtn) exportBtn.addEventListener("click", doExport);
+    var switchBtn = document.getElementById("switch-user-btn");
+    if (switchBtn) switchBtn.addEventListener("click", function () {
+      state.reviewerName = null;
+      render();
+    });
+
+    if (state.phase === 1) bindPhase1(); else bindPhase2();
+  }
+
+  render();
+})();
+</script>
