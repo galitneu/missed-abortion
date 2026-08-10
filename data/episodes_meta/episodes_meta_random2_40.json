@@ -1,0 +1,546 @@
+[
+  {
+    "episode_id": "RND2EP001",
+    "admission_nos": [
+      11668728
+    ],
+    "linked": false,
+    "link_confidence": null,
+    "age": 39,
+    "entry_date": "2024-01-01T14:34:40.260000",
+    "discharge_date": "2024-01-01T14:34:40.260000",
+    "text_file": "/tmp/claude-0/-home-user-comfort-choice-helper/df71759e-1127-5ed0-ab07-ff2e70e7a1bc/scratchpad/episode_texts_random2/RND2EP001.txt",
+    "n_rows": 1
+  },
+  {
+    "episode_id": "RND2EP002",
+    "admission_nos": [
+      11684598
+    ],
+    "linked": false,
+    "link_confidence": null,
+    "age": 34,
+    "entry_date": "2024-02-11T12:59:32.677000",
+    "discharge_date": "2024-02-11T13:48:08.487000",
+    "text_file": "/tmp/claude-0/-home-user-comfort-choice-helper/df71759e-1127-5ed0-ab07-ff2e70e7a1bc/scratchpad/episode_texts_random2/RND2EP002.txt",
+    "n_rows": 4
+  },
+  {
+    "episode_id": "RND2EP003",
+    "admission_nos": [
+      11691117,
+      32186001
+    ],
+    "linked": true,
+    "link_confidence": [
+      1.0
+    ],
+    "age": 26,
+    "entry_date": "2024-02-26T21:36:31.390000",
+    "discharge_date": "2024-02-28T07:55:47.720000",
+    "text_file": "/tmp/claude-0/-home-user-comfort-choice-helper/df71759e-1127-5ed0-ab07-ff2e70e7a1bc/scratchpad/episode_texts_random2/RND2EP003.txt",
+    "n_rows": 3
+  },
+  {
+    "episode_id": "RND2EP004",
+    "admission_nos": [
+      11692306
+    ],
+    "linked": false,
+    "link_confidence": null,
+    "age": 34,
+    "entry_date": "2024-02-29T21:51:43.737000",
+    "discharge_date": "2024-02-29T21:54:41.303000",
+    "text_file": "/tmp/claude-0/-home-user-comfort-choice-helper/df71759e-1127-5ed0-ab07-ff2e70e7a1bc/scratchpad/episode_texts_random2/RND2EP004.txt",
+    "n_rows": 2
+  },
+  {
+    "episode_id": "RND2EP005",
+    "admission_nos": [
+      11699168
+    ],
+    "linked": false,
+    "link_confidence": null,
+    "age": 35,
+    "entry_date": "2024-03-19T12:25:40.920000",
+    "discharge_date": "2024-03-19T13:29:45.347000",
+    "text_file": "/tmp/claude-0/-home-user-comfort-choice-helper/df71759e-1127-5ed0-ab07-ff2e70e7a1bc/scratchpad/episode_texts_random2/RND2EP005.txt",
+    "n_rows": 9
+  },
+  {
+    "episode_id": "RND2EP006",
+    "admission_nos": [
+      11699889
+    ],
+    "linked": false,
+    "link_confidence": null,
+    "age": 46,
+    "entry_date": "2024-03-21T09:52:35.270000",
+    "discharge_date": "2024-03-21T10:01:55.693000",
+    "text_file": "/tmp/claude-0/-home-user-comfort-choice-helper/df71759e-1127-5ed0-ab07-ff2e70e7a1bc/scratchpad/episode_texts_random2/RND2EP006.txt",
+    "n_rows": 2
+  },
+  {
+    "episode_id": "RND2EP007",
+    "admission_nos": [
+      11703778
+    ],
+    "linked": false,
+    "link_confidence": null,
+    "age": 32,
+    "entry_date": "2024-03-31T17:52:13.023000",
+    "discharge_date": "2024-03-31T18:09:46.490000",
+    "text_file": "/tmp/claude-0/-home-user-comfort-choice-helper/df71759e-1127-5ed0-ab07-ff2e70e7a1bc/scratchpad/episode_texts_random2/RND2EP007.txt",
+    "n_rows": 3
+  },
+  {
+    "episode_id": "RND2EP008",
+    "admission_nos": [
+      11709860
+    ],
+    "linked": false,
+    "link_confidence": null,
+    "age": 31,
+    "entry_date": "2024-04-16T11:31:19.257000",
+    "discharge_date": "2024-04-16T13:33:47.923000",
+    "text_file": "/tmp/claude-0/-home-user-comfort-choice-helper/df71759e-1127-5ed0-ab07-ff2e70e7a1bc/scratchpad/episode_texts_random2/RND2EP008.txt",
+    "n_rows": 5
+  },
+  {
+    "episode_id": "RND2EP009",
+    "admission_nos": [
+      11717405,
+      32232761
+    ],
+    "linked": true,
+    "link_confidence": [
+      1.0
+    ],
+    "age": 40,
+    "entry_date": "2024-05-06T15:46:55.683000",
+    "discharge_date": "2024-05-08T12:08:00.700000",
+    "text_file": "/tmp/claude-0/-home-user-comfort-choice-helper/df71759e-1127-5ed0-ab07-ff2e70e7a1bc/scratchpad/episode_texts_random2/RND2EP009.txt",
+    "n_rows": 3
+  },
+  {
+    "episode_id": "RND2EP010",
+    "admission_nos": [
+      11718050
+    ],
+    "linked": false,
+    "link_confidence": null,
+    "age": 44,
+    "entry_date": "2024-05-08T10:46:51.890000",
+    "discharge_date": "2024-05-08T10:58:04.830000",
+    "text_file": "/tmp/claude-0/-home-user-comfort-choice-helper/df71759e-1127-5ed0-ab07-ff2e70e7a1bc/scratchpad/episode_texts_random2/RND2EP010.txt",
+    "n_rows": 2
+  },
+  {
+    "episode_id": "RND2EP011",
+    "admission_nos": [
+      11718294
+    ],
+    "linked": false,
+    "link_confidence": null,
+    "age": 52,
+    "entry_date": "2024-05-08T20:02:46.737000",
+    "discharge_date": "2024-05-08T20:31:33.113000",
+    "text_file": "/tmp/claude-0/-home-user-comfort-choice-helper/df71759e-1127-5ed0-ab07-ff2e70e7a1bc/scratchpad/episode_texts_random2/RND2EP011.txt",
+    "n_rows": 8
+  },
+  {
+    "episode_id": "RND2EP012",
+    "admission_nos": [
+      11718457
+    ],
+    "linked": false,
+    "link_confidence": null,
+    "age": 30,
+    "entry_date": "2024-05-09T10:42:19.303000",
+    "discharge_date": "2024-05-09T10:50:08.183000",
+    "text_file": "/tmp/claude-0/-home-user-comfort-choice-helper/df71759e-1127-5ed0-ab07-ff2e70e7a1bc/scratchpad/episode_texts_random2/RND2EP012.txt",
+    "n_rows": 5
+  },
+  {
+    "episode_id": "RND2EP013",
+    "admission_nos": [
+      32235618
+    ],
+    "linked": false,
+    "link_confidence": null,
+    "age": 38,
+    "entry_date": "2024-05-12T15:01:45.830000",
+    "discharge_date": "2024-05-12T15:01:45.830000",
+    "text_file": "/tmp/claude-0/-home-user-comfort-choice-helper/df71759e-1127-5ed0-ab07-ff2e70e7a1bc/scratchpad/episode_texts_random2/RND2EP013.txt",
+    "n_rows": 1
+  },
+  {
+    "episode_id": "RND2EP014",
+    "admission_nos": [
+      11722932,
+      32242079
+    ],
+    "linked": true,
+    "link_confidence": [
+      1.0
+    ],
+    "age": 33,
+    "entry_date": "2024-05-20T19:59:51.100000",
+    "discharge_date": "2024-05-22T11:38:45.667000",
+    "text_file": "/tmp/claude-0/-home-user-comfort-choice-helper/df71759e-1127-5ed0-ab07-ff2e70e7a1bc/scratchpad/episode_texts_random2/RND2EP014.txt",
+    "n_rows": 3
+  },
+  {
+    "episode_id": "RND2EP015",
+    "admission_nos": [
+      11740768,
+      11741692
+    ],
+    "linked": true,
+    "link_confidence": [
+      1.0
+    ],
+    "age": 31,
+    "entry_date": "2024-07-04T12:44:27.130000",
+    "discharge_date": "2024-07-07T13:08:09.757000",
+    "text_file": "/tmp/claude-0/-home-user-comfort-choice-helper/df71759e-1127-5ed0-ab07-ff2e70e7a1bc/scratchpad/episode_texts_random2/RND2EP015.txt",
+    "n_rows": 9
+  },
+  {
+    "episode_id": "RND2EP016",
+    "admission_nos": [
+      11746761
+    ],
+    "linked": false,
+    "link_confidence": null,
+    "age": 42,
+    "entry_date": "2024-07-19T16:57:09.157000",
+    "discharge_date": "2024-07-19T17:20:26.423000",
+    "text_file": "/tmp/claude-0/-home-user-comfort-choice-helper/df71759e-1127-5ed0-ab07-ff2e70e7a1bc/scratchpad/episode_texts_random2/RND2EP016.txt",
+    "n_rows": 2
+  },
+  {
+    "episode_id": "RND2EP017",
+    "admission_nos": [
+      11749441
+    ],
+    "linked": false,
+    "link_confidence": null,
+    "age": 36,
+    "entry_date": "2024-07-26T08:49:39.900000",
+    "discharge_date": "2024-07-26T09:07:11.113000",
+    "text_file": "/tmp/claude-0/-home-user-comfort-choice-helper/df71759e-1127-5ed0-ab07-ff2e70e7a1bc/scratchpad/episode_texts_random2/RND2EP017.txt",
+    "n_rows": 2
+  },
+  {
+    "episode_id": "RND2EP018",
+    "admission_nos": [
+      11753773
+    ],
+    "linked": false,
+    "link_confidence": null,
+    "age": 33,
+    "entry_date": "2024-08-06T18:47:19.880000",
+    "discharge_date": "2024-08-06T21:21:19.237000",
+    "text_file": "/tmp/claude-0/-home-user-comfort-choice-helper/df71759e-1127-5ed0-ab07-ff2e70e7a1bc/scratchpad/episode_texts_random2/RND2EP018.txt",
+    "n_rows": 5
+  },
+  {
+    "episode_id": "RND2EP019",
+    "admission_nos": [
+      11758070
+    ],
+    "linked": false,
+    "link_confidence": null,
+    "age": 36,
+    "entry_date": "2024-08-18T12:46:43.640000",
+    "discharge_date": "2024-08-18T13:08:05.193000",
+    "text_file": "/tmp/claude-0/-home-user-comfort-choice-helper/df71759e-1127-5ed0-ab07-ff2e70e7a1bc/scratchpad/episode_texts_random2/RND2EP019.txt",
+    "n_rows": 3
+  },
+  {
+    "episode_id": "RND2EP020",
+    "admission_nos": [
+      32312546
+    ],
+    "linked": false,
+    "link_confidence": null,
+    "age": 31,
+    "entry_date": "2024-09-04T10:04:59.153000",
+    "discharge_date": "2024-09-04T10:04:59.153000",
+    "text_file": "/tmp/claude-0/-home-user-comfort-choice-helper/df71759e-1127-5ed0-ab07-ff2e70e7a1bc/scratchpad/episode_texts_random2/RND2EP020.txt",
+    "n_rows": 1
+  },
+  {
+    "episode_id": "RND2EP021",
+    "admission_nos": [
+      11774293,
+      32329000
+    ],
+    "linked": true,
+    "link_confidence": [
+      1.0
+    ],
+    "age": 38,
+    "entry_date": "2024-09-29T10:19:27.523000",
+    "discharge_date": "2024-09-29T12:03:36.037000",
+    "text_file": "/tmp/claude-0/-home-user-comfort-choice-helper/df71759e-1127-5ed0-ab07-ff2e70e7a1bc/scratchpad/episode_texts_random2/RND2EP021.txt",
+    "n_rows": 7
+  },
+  {
+    "episode_id": "RND2EP022",
+    "admission_nos": [
+      11775533
+    ],
+    "linked": false,
+    "link_confidence": null,
+    "age": 28,
+    "entry_date": "2024-10-02T11:00:20.593000",
+    "discharge_date": "2024-10-02T11:06:15.070000",
+    "text_file": "/tmp/claude-0/-home-user-comfort-choice-helper/df71759e-1127-5ed0-ab07-ff2e70e7a1bc/scratchpad/episode_texts_random2/RND2EP022.txt",
+    "n_rows": 2
+  },
+  {
+    "episode_id": "RND2EP023",
+    "admission_nos": [
+      11778120
+    ],
+    "linked": false,
+    "link_confidence": null,
+    "age": 39,
+    "entry_date": "2024-10-09T11:22:59.310000",
+    "discharge_date": "2024-10-09T12:25:48.597000",
+    "text_file": "/tmp/claude-0/-home-user-comfort-choice-helper/df71759e-1127-5ed0-ab07-ff2e70e7a1bc/scratchpad/episode_texts_random2/RND2EP023.txt",
+    "n_rows": 3
+  },
+  {
+    "episode_id": "RND2EP024",
+    "admission_nos": [
+      11780955
+    ],
+    "linked": false,
+    "link_confidence": null,
+    "age": 30,
+    "entry_date": "2024-10-16T11:19:28.040000",
+    "discharge_date": "2024-10-16T12:49:16.370000",
+    "text_file": "/tmp/claude-0/-home-user-comfort-choice-helper/df71759e-1127-5ed0-ab07-ff2e70e7a1bc/scratchpad/episode_texts_random2/RND2EP024.txt",
+    "n_rows": 3
+  },
+  {
+    "episode_id": "RND2EP025",
+    "admission_nos": [
+      11786305,
+      32347037
+    ],
+    "linked": true,
+    "link_confidence": [
+      1.0
+    ],
+    "age": 35,
+    "entry_date": "2024-10-30T10:11:50.440000",
+    "discharge_date": "2024-11-03T11:11:52.470000",
+    "text_file": "/tmp/claude-0/-home-user-comfort-choice-helper/df71759e-1127-5ed0-ab07-ff2e70e7a1bc/scratchpad/episode_texts_random2/RND2EP025.txt",
+    "n_rows": 5
+  },
+  {
+    "episode_id": "RND2EP026",
+    "admission_nos": [
+      32350955
+    ],
+    "linked": false,
+    "link_confidence": null,
+    "age": 38,
+    "entry_date": "2024-11-07T10:18:59.990000",
+    "discharge_date": "2024-11-07T10:56:51.597000",
+    "text_file": "/tmp/claude-0/-home-user-comfort-choice-helper/df71759e-1127-5ed0-ab07-ff2e70e7a1bc/scratchpad/episode_texts_random2/RND2EP026.txt",
+    "n_rows": 2
+  },
+  {
+    "episode_id": "RND2EP027",
+    "admission_nos": [
+      11795984,
+      32364037
+    ],
+    "linked": true,
+    "link_confidence": [
+      1.0
+    ],
+    "age": 29,
+    "entry_date": "2024-11-23T23:00:23.733000",
+    "discharge_date": "2024-11-26T15:00:10.270000",
+    "text_file": "/tmp/claude-0/-home-user-comfort-choice-helper/df71759e-1127-5ed0-ab07-ff2e70e7a1bc/scratchpad/episode_texts_random2/RND2EP027.txt",
+    "n_rows": 4
+  },
+  {
+    "episode_id": "RND2EP028",
+    "admission_nos": [
+      11800621
+    ],
+    "linked": false,
+    "link_confidence": null,
+    "age": 44,
+    "entry_date": "2024-12-05T16:29:55.850000",
+    "discharge_date": "2024-12-05T16:40:05.700000",
+    "text_file": "/tmp/claude-0/-home-user-comfort-choice-helper/df71759e-1127-5ed0-ab07-ff2e70e7a1bc/scratchpad/episode_texts_random2/RND2EP028.txt",
+    "n_rows": 2
+  },
+  {
+    "episode_id": "RND2EP029",
+    "admission_nos": [
+      11811182
+    ],
+    "linked": false,
+    "link_confidence": null,
+    "age": 39,
+    "entry_date": "2025-01-02T10:53:59.403000",
+    "discharge_date": "2025-01-02T10:53:59.403000",
+    "text_file": "/tmp/claude-0/-home-user-comfort-choice-helper/df71759e-1127-5ed0-ab07-ff2e70e7a1bc/scratchpad/episode_texts_random2/RND2EP029.txt",
+    "n_rows": 1
+  },
+  {
+    "episode_id": "RND2EP030",
+    "admission_nos": [
+      32399060
+    ],
+    "linked": false,
+    "link_confidence": null,
+    "age": 34,
+    "entry_date": "2025-01-16T09:18:01.350000",
+    "discharge_date": "2025-01-16T09:29:25.847000",
+    "text_file": "/tmp/claude-0/-home-user-comfort-choice-helper/df71759e-1127-5ed0-ab07-ff2e70e7a1bc/scratchpad/episode_texts_random2/RND2EP030.txt",
+    "n_rows": 4
+  },
+  {
+    "episode_id": "RND2EP031",
+    "admission_nos": [
+      32399324
+    ],
+    "linked": false,
+    "link_confidence": null,
+    "age": 42,
+    "entry_date": "2025-01-16T11:47:50.037000",
+    "discharge_date": "2025-01-16T11:47:50.037000",
+    "text_file": "/tmp/claude-0/-home-user-comfort-choice-helper/df71759e-1127-5ed0-ab07-ff2e70e7a1bc/scratchpad/episode_texts_random2/RND2EP031.txt",
+    "n_rows": 1
+  },
+  {
+    "episode_id": "RND2EP032",
+    "admission_nos": [
+      32401535
+    ],
+    "linked": false,
+    "link_confidence": null,
+    "age": 42,
+    "entry_date": "2025-01-20T15:20:37.120000",
+    "discharge_date": "2025-01-20T15:20:37.120000",
+    "text_file": "/tmp/claude-0/-home-user-comfort-choice-helper/df71759e-1127-5ed0-ab07-ff2e70e7a1bc/scratchpad/episode_texts_random2/RND2EP032.txt",
+    "n_rows": 1
+  },
+  {
+    "episode_id": "RND2EP033",
+    "admission_nos": [
+      11819291
+    ],
+    "linked": false,
+    "link_confidence": null,
+    "age": 39,
+    "entry_date": "2025-01-22T11:21:09.480000",
+    "discharge_date": "2025-01-22T11:21:09.480000",
+    "text_file": "/tmp/claude-0/-home-user-comfort-choice-helper/df71759e-1127-5ed0-ab07-ff2e70e7a1bc/scratchpad/episode_texts_random2/RND2EP033.txt",
+    "n_rows": 1
+  },
+  {
+    "episode_id": "RND2EP034",
+    "admission_nos": [
+      11831061
+    ],
+    "linked": false,
+    "link_confidence": null,
+    "age": 34,
+    "entry_date": "2025-02-23T10:22:43.380000",
+    "discharge_date": "2025-02-23T10:40:38.193000",
+    "text_file": "/tmp/claude-0/-home-user-comfort-choice-helper/df71759e-1127-5ed0-ab07-ff2e70e7a1bc/scratchpad/episode_texts_random2/RND2EP034.txt",
+    "n_rows": 4
+  },
+  {
+    "episode_id": "RND2EP035",
+    "admission_nos": [
+      11833687,
+      32432734
+    ],
+    "linked": true,
+    "link_confidence": [
+      0.999
+    ],
+    "age": 39,
+    "entry_date": "2025-03-02T13:14:23.933000",
+    "discharge_date": "2025-03-05T08:08:37.797000",
+    "text_file": "/tmp/claude-0/-home-user-comfort-choice-helper/df71759e-1127-5ed0-ab07-ff2e70e7a1bc/scratchpad/episode_texts_random2/RND2EP035.txt",
+    "n_rows": 4
+  },
+  {
+    "episode_id": "RND2EP036",
+    "admission_nos": [
+      11845735
+    ],
+    "linked": false,
+    "link_confidence": null,
+    "age": 42,
+    "entry_date": "2025-04-02T20:00:04.287000",
+    "discharge_date": "2025-04-03T15:28:54.977000",
+    "text_file": "/tmp/claude-0/-home-user-comfort-choice-helper/df71759e-1127-5ed0-ab07-ff2e70e7a1bc/scratchpad/episode_texts_random2/RND2EP036.txt",
+    "n_rows": 3
+  },
+  {
+    "episode_id": "RND2EP037",
+    "admission_nos": [
+      11845724
+    ],
+    "linked": false,
+    "link_confidence": null,
+    "age": 36,
+    "entry_date": "2025-04-02T20:29:08.317000",
+    "discharge_date": "2025-04-02T22:09:01.663000",
+    "text_file": "/tmp/claude-0/-home-user-comfort-choice-helper/df71759e-1127-5ed0-ab07-ff2e70e7a1bc/scratchpad/episode_texts_random2/RND2EP037.txt",
+    "n_rows": 4
+  },
+  {
+    "episode_id": "RND2EP038",
+    "admission_nos": [
+      32458318
+    ],
+    "linked": false,
+    "link_confidence": null,
+    "age": 38,
+    "entry_date": "2025-04-10T12:19:52.850000",
+    "discharge_date": "2025-04-10T12:19:52.850000",
+    "text_file": "/tmp/claude-0/-home-user-comfort-choice-helper/df71759e-1127-5ed0-ab07-ff2e70e7a1bc/scratchpad/episode_texts_random2/RND2EP038.txt",
+    "n_rows": 1
+  },
+  {
+    "episode_id": "RND2EP039",
+    "admission_nos": [
+      11858002
+    ],
+    "linked": false,
+    "link_confidence": null,
+    "age": 38,
+    "entry_date": "2025-05-05T12:18:27.430000",
+    "discharge_date": "2025-05-05T12:48:54.730000",
+    "text_file": "/tmp/claude-0/-home-user-comfort-choice-helper/df71759e-1127-5ed0-ab07-ff2e70e7a1bc/scratchpad/episode_texts_random2/RND2EP039.txt",
+    "n_rows": 3
+  },
+  {
+    "episode_id": "RND2EP040",
+    "admission_nos": [
+      32485346
+    ],
+    "linked": false,
+    "link_confidence": null,
+    "age": 36,
+    "entry_date": "2025-05-25T12:47:43.747000",
+    "discharge_date": "2025-05-25T12:47:43.747000",
+    "text_file": "/tmp/claude-0/-home-user-comfort-choice-helper/df71759e-1127-5ed0-ab07-ff2e70e7a1bc/scratchpad/episode_texts_random2/RND2EP040.txt",
+    "n_rows": 1
+  }
+]
