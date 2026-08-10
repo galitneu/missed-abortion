@@ -129,6 +129,26 @@
   .callout.warn { border-right-color: var(--warn); }
   .callout b { display: block; margin-bottom: 4px; font-size: 13px; }
 
+  .glossary { display: flex; flex-direction: column; gap: 10px; margin: 16px 0 8px; }
+  .glossary dt {
+    display: inline-block;
+    font-weight: 700;
+    font-size: 14px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 3px 12px;
+    margin-bottom: 4px;
+  }
+  .glossary dd { margin: 0; font-size: 14px; color: var(--text-muted); max-width: 62ch; }
+  .glossary .g-item { border-right: 3px solid var(--border); padding-right: 12px; }
+  .glossary .g-success dt { border-color: var(--good); color: var(--good); }
+  .glossary .g-success { border-right-color: var(--good); }
+  .glossary .g-failure dt { border-color: var(--critical); color: var(--critical); }
+  .glossary .g-failure { border-right-color: var(--critical); }
+  .glossary .g-open dt { border-color: var(--warn); color: var(--warn); }
+  .glossary .g-open { border-right-color: var(--warn); }
+
   .footer-note {
     margin-top: 50px;
     padding-top: 20px;
@@ -147,7 +167,7 @@
     <div class="eyebrow">מדריך שימוש &middot; סקירת קידוד קליני</div>
     <h1>מדריך לרופא/ה הבודק/ת — סקירת קידוד הפלה נדחית</h1>
     <p class="lede">
-      במסגרת מחקר דוקטורט, 3 סוכני בינה מלאכותית עצמאיים קידדו 80 אפיזודות קליניות של הפלה נדחית מתוך רשומות אשפוז גולמיות.
+      במסגרת הפרויקט, 3 סוכני בינה מלאכותית עצמאיים קידדו 80 אפיזודות קליניות של הפלה נדחית מתוך רשומות אשפוז גולמיות.
       לפני שממשיכים לקודד את כל שאר האפיזודות (כ-900 נוספות), אנחנו צריכים בדיקה קלינית שלך — לוודא שהסיווגים והנתונים שחולצו נכונים.
     </p>
     <div class="link-box">🔗 <b>קישור לכלי הסקירה:</b> <a href="https://claude.ai/code/artifact/a90f92d8-fbf1-4194-8525-e52a62da5104?open_in_browser=1&amp;via=user_open&amp;org=7985db36-1f1f-4df2-bad8-6a547ea61688" style="color:var(--accent-strong);">לחצו כאן לפתיחת הכלי</a></div>
@@ -167,6 +187,31 @@
 
   <h2>לפני שמתחילים</h2>
   <p>לא צריך להתקין כלום ולא להירשם. פותחים את הקישור בכל דפדפן (גם בנייד), מקלידים שם, ומתחילים. ההתקדמות נשמרת אוטומטית באותו דפדפן — אפשר לסגור ולחזור מאוחר יותר.</p>
+
+  <h2>מה המשמעות של כל סיווג</h2>
+  <p>ה"הכרעה" שמופיעה בכל אפיזודה היא אחת מ-5 האפשרויות הבאות:</p>
+  <dl class="glossary">
+    <div class="g-item g-success">
+      <dt>הצלחה</dt>
+      <dd>קיבלה טיפול תרופתי (מייפיג'ין/ציטוטק), וביקורת מאוחרת מראה שאין יותר שק הריון — הטיפול הצליח בלי צורך בגרידה.</dd>
+    </div>
+    <div class="g-item g-failure">
+      <dt>כישלון</dt>
+      <dd>קיבלה טיפול תרופתי, אך בסופו של דבר בכל זאת עברה גרידה (מתוכננת או דחופה) — הטיפול התרופתי לא השלים את הפינוי.</dd>
+    </div>
+    <div class="g-item g-open">
+      <dt>פתוח</dt>
+      <dd>קיבלה טיפול תרופתי או הופנתה אליו, אבל אין בטקסט תיעוד של מה קרה בהמשך (לא הגיעה לביקורת שנקבעה, או שהרשומה נגמרת שם) — לא ידוע איך זה הסתיים.</dd>
+    </div>
+    <div class="g-item">
+      <dt>לא רלוונטי</dt>
+      <dd>אבחנה ודאית של הפלה נדחית, אבל האישה בחרה מלכתחילה בגרידה ולא ניסתה טיפול תרופתי כלל.</dd>
+    </div>
+    <div class="g-item">
+      <dt>הוחרג (לא הפלה נדחית)</dt>
+      <dd>מסתבר שזה בכלל לא מקרה קלאסי של הפלה נדחית — למשל כפילות רשומה, הריון חוץ רחמי, הריון תאומים, הפסקת הריון יזומה, או אבחנה שונה לגמרי.</dd>
+    </div>
+  </dl>
 
   <h2>שלב 1 — סיווג ראשי, צעד אחר צעד</h2>
 
