@@ -33,6 +33,33 @@ EXCLUSION_HE = {
     "elective_termination": "הפסקת הריון יזומה", "other": "אחר",
 }
 
+BOOL_FIELDS = {
+    "smoking", "medical_treatment", "D_C_treatment", "elective_D_C", "emergency_D_C", "hysteroscopy",
+    "FU1_gestational", "FU1_lining_over15mm", "FU1_bleeding", "FU1_pain",
+    "FU2_gestational", "FU2_lining_over15mm", "FU2_bleeding", "FU2_pain", "delayed_decision_followup",
+}
+INT_FIELDS = {"G", "P", "NVD", "CS", "Ab_total", "prev_D_C", "IVF"}
+NUMBER_FIELDS = {"HGB", "PLT", "WBC", "hcg_value", "GA_LMP_weeks", "GA_US_weeks"}
+SELECT_FIELDS = {
+    "hcg_qualitative": [("positive", "חיובי"), ("negative", "שלילי")],
+    "US_finding": [
+        ("1", "1 — שק הריון בלבד"), ("2", "2 — שק חלמון, ללא קוטב עוברי"),
+        ("3", "3 — קוטב עוברי, דופק לא תועד מעולם"), ("4", "4 — קוטב עוברי, דופק תועד ונעלם"),
+    ],
+}
+
+
+def field_type(f):
+    if f in BOOL_FIELDS:
+        return "bool"
+    if f in SELECT_FIELDS:
+        return "select"
+    if f in INT_FIELDS:
+        return "int"
+    if f in NUMBER_FIELDS:
+        return "number"
+    return "text"
+
 def text_path(episode_id):
     if episode_id.startswith("RND2EP"):
         d = "episode_texts_random2"
@@ -61,6 +88,8 @@ for ep in episodes:
             "value": consensus.get(f),
             "coders": [coders.get(i, {}).get(f) for i in (1, 2, 3)],
             "disagree": f in disagree_fields,
+            "type": field_type(f),
+            "options": SELECT_FIELDS.get(f),
         })
 
     out.append({

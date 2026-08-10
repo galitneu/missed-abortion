@@ -273,6 +273,20 @@
   }
   .coder-chip b { color: var(--text-muted); font-weight: 600; margin-left: 4px; }
 
+  .field-link-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 10px 12px;
+    margin-bottom: 14px;
+    font-size: 12.5px;
+  }
+  .field-link-row .flr-status { color: var(--text-muted); }
+  .field-link-row .flr-status.done { color: var(--good); font-weight: 700; }
   .verdict-group { display: flex; gap: 8px; margin-top: 16px; }
   .verdict-btn {
     flex: 1;
@@ -334,6 +348,7 @@
   .field-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
   .field-table tr.disagree td:first-child { box-shadow: inset 3px 0 0 var(--warn); }
   .field-table tr.flagged td:first-child { box-shadow: inset 3px 0 0 var(--critical); }
+  .field-table tr.confirmed td:first-child { box-shadow: inset 3px 0 0 var(--good); }
   .field-table .fval { font-family: var(--mono); font-variant-numeric: tabular-nums; }
   .field-table .fcoders { font-family: var(--mono); font-size: 11px; color: var(--text-muted); }
   .flag-toggle {
@@ -347,17 +362,31 @@
     font-weight: 600;
   }
   .flag-toggle.on { background: var(--critical-soft); border-color: var(--critical); color: var(--critical); }
-  .field-note { margin-top: 6px; }
-  .field-note input {
-    width: 100%;
+  .decision-group { display: flex; gap: 6px; flex-wrap: wrap; }
+  .confirm-toggle {
     border: 1px solid var(--border);
+    background: var(--surface);
+    border-radius: 3px;
+    padding: 4px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+  .confirm-toggle.on { background: var(--good-soft); border-color: var(--good); color: var(--good); }
+  .field-correction { margin-top: 8px; display: flex; flex-direction: column; gap: 6px; min-width: 170px; }
+  .field-correction .flabel { font-size: 10.5px; color: var(--text-muted); font-weight: 600; }
+  .field-correction input, .field-correction select {
+    width: 100%;
+    border: 1px solid var(--critical);
     border-radius: 3px;
     padding: 5px 8px;
-    font-size: 12px;
-    background: var(--bg);
+    font-size: 12.5px;
+    background: var(--surface);
     color: var(--text);
     direction: rtl;
   }
+  .field-correction input[data-field-note], .field-correction input[data-field-note] { border-color: var(--border); }
 
   .empty-state { text-align: center; padding: 60px 20px; color: var(--text-muted); }
   .empty-state .big { font-size: 40px; margin-bottom: 10px; }
@@ -514,7 +543,11 @@
     var phase2arr = Object.keys(state.phase2).map(function (id) {
       var rec = state.phase2[id];
       var fields = Object.keys(rec.fields || {}).map(function (f) {
-        return { field: f, flagged: !!rec.fields[f].flagged, note: rec.fields[f].note || "" };
+        var fs = rec.fields[f];
+        return {
+          field: f, flagged: !!fs.flagged, confirmed: !!fs.confirmed, note: fs.note || "",
+          correct_value: fs.flagged ? (fs.correctValue === undefined ? null : fs.correctValue) : null,
+        };
       });
       return { episode_id: id, submitted: !!rec.submitted, fields: fields };
     });
@@ -644,6 +677,7 @@
             '<div class="coder-row">' + codersRow + '</div>' +
             (ep.possible_record_mixup ? '<div class="outcome-block" style="background:var(--critical-soft);"><b>חשד ערבוב רשומות:</b> ' + esc(ep.record_mixup_note || "") + '</div>' : '') +
             (ep.notes ? '<div style="font-size:12.5px;color:var(--text-muted);margin-bottom:10px;">הערת קודד: ' + esc(ep.notes) + '</div>' : '') +
+            (ep.phase2 ? renderFieldReviewLink(ep) : '') +
             '<div class="pane-label">האם הסיווג הראשי נכון?</div>' +
             '<div class="verdict-group">' +
               '<button class="verdict-btn v-correct ' + (rec.verdict === "correct" ? "on" : "") + '" data-v="correct">✓ תקין</button>' +
@@ -709,6 +743,19 @@
     return html;
   }
 
+  function renderFieldReviewLink(ep) {
+    var rec = state.phase2[ep.episode_id];
+    var done = rec && rec.submitted;
+    return (
+      '<div class="field-link-row">' +
+        '<span>אפיזודה זו סווגה כ<b>' + esc(ep.outcome_he) + '</b> — יש לה גם בדיקת שדות מובנים בשלב 2.</span>' +
+        '<button class="btn" id="goto-field-review">' +
+          (done ? '✓ נבדקה — לצפייה' : 'לבדיקת שדות של אפיזודה זו') +
+        '</button>' +
+      '</div>'
+    );
+  }
+
   function bindPhase1() {
     var ep = DATA[Math.min(state.phase1Index, DATA.length - 1)];
     document.querySelectorAll(".verdict-btn").forEach(function (btn) {
@@ -727,6 +774,17 @@
         rec.note = noteEl.value;
         state.phase1[ep.episode_id] = rec;
         saveState();
+      });
+    }
+    var gotoFieldBtn = document.getElementById("goto-field-review");
+    if (gotoFieldBtn) {
+      gotoFieldBtn.addEventListener("click", function () {
+        var i2 = phase2Episodes.findIndex(function (e) { return e.episode_id === ep.episode_id; });
+        if (i2 >= 0) {
+          state.phase2Index = i2;
+          state.phase = 2;
+          saveState(); render();
+        }
       });
     }
     var correctOutcomeEl = document.getElementById("p1-correct-outcome");
@@ -767,6 +825,29 @@
   }
 
   // ---------- phase 2 ----------
+  var BOOL_OPTIONS = [{ v: "true", l: "כן" }, { v: "false", l: "לא" }, { v: "null", l: "לא ידוע / לא רלוונטי" }];
+
+  function renderFieldCorrection(f, fs) {
+    var correctInputHtml;
+    if (f.type === "bool") {
+      correctInputHtml = '<select data-field-correct="' + f.field + '"><option value="">— ערך נכון —</option>' + optionsHtml(BOOL_OPTIONS, fs.correctValue) + '</select>';
+    } else if (f.type === "select" && f.options) {
+      var opts = f.options.map(function (pair) { return { v: pair[0], l: pair[1] }; });
+      correctInputHtml = '<select data-field-correct="' + f.field + '"><option value="">— ערך נכון —</option>' + optionsHtml(opts, fs.correctValue) + '</select>';
+    } else if (f.type === "int" || f.type === "number") {
+      correctInputHtml = '<input type="number" ' + (f.type === "number" ? 'step="any"' : "") + ' data-field-correct="' + f.field + '" placeholder="ערך נכון" value="' + esc(fs.correctValue || "") + '" />';
+    } else {
+      correctInputHtml = '<input type="text" data-field-correct="' + f.field + '" placeholder="ערך נכון" value="' + esc(fs.correctValue || "") + '" />';
+    }
+    return (
+      '<div class="field-correction">' +
+        '<div class="flabel">ערך נכון</div>' + correctInputHtml +
+        '<div class="flabel">הערה (לא חובה)</div>' +
+        '<input type="text" data-field-note="' + f.field + '" placeholder="למה זה שגוי?" value="' + esc(fs.note || "") + '" />' +
+      '</div>'
+    );
+  }
+
   function renderPhase2() {
     if (!phase2Episodes.length) return '<div class="empty-state"><div class="big">—</div>אין אפיזודות הצלחה/כישלון לבדיקה</div>';
     var idx = Math.min(state.phase2Index, phase2Episodes.length - 1);
@@ -775,14 +856,26 @@
 
     var rows = ep.fields.map(function (f) {
       var fs = rec.fields[f.field] || {};
-      var cls = (f.disagree ? "disagree " : "") + (fs.flagged ? "flagged" : "");
+      var cls = (f.disagree ? "disagree " : "") + (fs.flagged ? "flagged" : "") + (fs.confirmed ? " confirmed" : "");
+      var decisionHtml;
+      if (f.disagree) {
+        // Disagreement between coders: reviewer must explicitly say the consensus is fine,
+        // not just leave it unmarked — unmarked should mean "not yet reviewed", not "approved".
+        decisionHtml =
+          '<div class="decision-group">' +
+            '<button class="confirm-toggle ' + (fs.confirmed ? "on" : "") + '" data-confirm-field="' + f.field + '">✓ ההכרעה תקינה</button>' +
+            '<button class="flag-toggle ' + (fs.flagged ? "on" : "") + '" data-field="' + f.field + '">✕ לא תקין</button>' +
+          '</div>';
+      } else {
+        decisionHtml = '<button class="flag-toggle ' + (fs.flagged ? "on" : "") + '" data-field="' + f.field + '">' + (fs.flagged ? "✕ סומן לא-תקין" : "סמן לא-תקין") + '</button>';
+      }
       return (
         '<tr class="' + cls + '" data-field="' + f.field + '">' +
           '<td>' + esc(f.label) + (f.disagree ? ' <span style="color:var(--warn);font-size:11px;">⚠ אי-הסכמה</span>' : '') + '</td>' +
           '<td class="fval">' + fmtVal(f.value) + '</td>' +
           '<td class="fcoders">' + f.coders.map(fmtVal).join(' &nbsp;/&nbsp; ') + '</td>' +
-          '<td><button class="flag-toggle ' + (fs.flagged ? "on" : "") + '" data-field="' + f.field + '">' + (fs.flagged ? "✕ סומן לא-תקין" : "סמן לא-תקין") + '</button>' +
-            (fs.flagged ? '<div class="field-note"><input type="text" data-field-note="' + f.field + '" placeholder="מה הבעיה?" value="' + esc(fs.note || "") + '" /></div>' : '') +
+          '<td>' + decisionHtml +
+            (fs.flagged ? renderFieldCorrection(f, fs) : "") +
           '</td>' +
         '</tr>'
       );
@@ -825,6 +918,18 @@
         var rec = getRec();
         var fs = rec.fields[field] || {};
         fs.flagged = !fs.flagged;
+        if (fs.flagged) fs.confirmed = false;
+        rec.fields[field] = fs;
+        saveState(); render();
+      });
+    });
+    document.querySelectorAll(".confirm-toggle").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var field = btn.getAttribute("data-confirm-field");
+        var rec = getRec();
+        var fs = rec.fields[field] || {};
+        fs.confirmed = !fs.confirmed;
+        if (fs.confirmed) { fs.flagged = false; fs.correctValue = null; }
         rec.fields[field] = fs;
         saveState(); render();
       });
@@ -838,6 +943,18 @@
         rec.fields[field] = fs;
         saveState();
       });
+    });
+    document.querySelectorAll("[data-field-correct]").forEach(function (el) {
+      var handler = function () {
+        var field = el.getAttribute("data-field-correct");
+        var rec = getRec();
+        var fs = rec.fields[field] || {};
+        fs.correctValue = el.value === "" ? null : el.value;
+        rec.fields[field] = fs;
+        saveState();
+      };
+      el.addEventListener("input", handler);
+      el.addEventListener("change", handler);
     });
     var prevBtn = document.getElementById("p2-prev");
     if (prevBtn) prevBtn.addEventListener("click", function () {
