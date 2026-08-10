@@ -10,8 +10,9 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DB_PATH = os.path.join(ROOT, "db", "missed_abortion.sqlite")
 
 BATCHES = [
-    ("chronological_40", os.path.join(ROOT, "data", "coding_results", "chronological_40.json"),
-     os.path.join(ROOT, "data", "raw_text", "chronological_40")),
+    # Database scope is the 80 randomly-sampled episodes only (the chronological 40 were used to
+    # develop/validate the codebook and are kept in data/ and the repo for reference, but are
+    # deliberately excluded here since they were not randomly sampled).
     ("random_80", os.path.join(ROOT, "data", "coding_results", "random_80.json"),
      None),  # mixed episode_id prefixes map to two raw_text dirs, resolved per-episode below
 ]
