@@ -904,8 +904,8 @@
           '<span class="meta">' + esc(ep.outcome_he) + ' &middot; אשפוזים: ' + esc(ep.admission_nos.join(", ")) + '</span></div>' +
           (rec.submitted ? '<span class="badge unanimous">נבדק</span>' : '') +
         '</div>' +
-        '<div class="card-body" style="grid-template-columns: 1fr 1.3fr;">' +
-          '<div class="source-pane"><div class="pane-label">רשומה קלינית מקורית</div><div class="source-text">' + esc(ep.text) + '</div></div>' +
+        '<div class="card-body" style="grid-template-columns: 1.5fr 1fr;">' +
+          '<div class="source-pane" style="max-height: 760px;"><div class="pane-label">רשומה קלינית מקורית</div><div class="source-text">' + esc(ep.text) + '</div></div>' +
           '<div class="coding-pane">' +
             '<div class="pane-label">שדות שחולצו (ההכרעה מול כל קודד) — מסמנים רק מה שגוי</div>' +
             '<div style="overflow-x:auto;"><table class="field-table"><thead><tr><th>שדה</th><th>הכרעה</th><th>קודד 1 / 2 / 3</th><th>סימון</th></tr></thead><tbody>' + rows + '</tbody></table></div>' +
