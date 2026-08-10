@@ -304,6 +304,26 @@
     direction: rtl;
   }
 
+  .correction-block {
+    margin-top: 12px;
+    padding: 12px 14px;
+    background: var(--critical-soft);
+    border: 1px solid var(--critical);
+    border-radius: 3px;
+  }
+  .correction-block .clabel { font-size: 12px; font-weight: 700; color: var(--critical); margin-bottom: 8px; }
+  .correction-block select {
+    width: 100%;
+    padding: 9px 10px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    background: var(--surface);
+    color: var(--text);
+    font-size: 13.5px;
+    direction: rtl;
+    margin-bottom: 8px;
+  }
+
   .nav-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 18px; border-top: 1px solid var(--border); background: var(--surface-2); }
   .nav-row .pos { font-family: var(--mono); font-size: 12px; color: var(--text-muted); font-variant-numeric: tabular-nums; }
   .nav-btns { display: flex; gap: 8px; }
@@ -484,7 +504,12 @@
   // ---------- export ----------
   function buildExport() {
     var phase1arr = Object.keys(state.phase1).map(function (id) {
-      return { episode_id: id, verdict: state.phase1[id].verdict, note: state.phase1[id].note || "" };
+      var r = state.phase1[id];
+      return {
+        episode_id: id, verdict: r.verdict, note: r.note || "",
+        corrected_outcome: r.verdict === "incorrect" ? (r.correctedOutcome || null) : null,
+        corrected_exclusion_reason: r.verdict === "incorrect" ? (r.correctedExclusion || null) : null,
+      };
     });
     var phase2arr = Object.keys(state.phase2).map(function (id) {
       var rec = state.phase2[id];
@@ -625,6 +650,7 @@
               '<button class="verdict-btn v-incorrect ' + (rec.verdict === "incorrect" ? "on" : "") + '" data-v="incorrect">✕ לא תקין</button>' +
               '<button class="verdict-btn v-unsure ' + (rec.verdict === "unsure" ? "on" : "") + '" data-v="unsure">? לא בטוח/ה</button>' +
             '</div>' +
+            (rec.verdict === "incorrect" ? renderCorrectionBlock(rec) : "") +
             '<div class="note-field"><textarea id="p1-note" placeholder="הערה (לא חובה)">' + esc(rec.note || "") + '</textarea></div>' +
           '</div>' +
         '</div>' +
@@ -644,6 +670,45 @@
     return m[o] || o || "—";
   }
 
+  var OUTCOME_OPTIONS = [
+    { v: "open", l: "פתוח (אין תיעוד המשך)" },
+    { v: "not_applicable", l: "לא רלוונטי (גרידה מלכתחילה)" },
+    { v: "success", l: "הצלחה (טיפול תרופתי הצליח)" },
+    { v: "failure", l: "כישלון (טיפול תרופתי נכשל, גרידה)" },
+    { v: "not_missed_abortion", l: "לא הפלה נדחית (יש להחריג)" },
+  ];
+  var EXCLUSION_OPTIONS = [
+    { v: "duplicate", l: "כפילות רשומה" },
+    { v: "other_diagnosis", l: "אבחנה אחרת" },
+    { v: "ectopic_pregnancy", l: "הריון חוץ רחמי" },
+    { v: "twins", l: "הריון תאומים" },
+    { v: "did_not_attend_followup", l: "לא הגיעה לביקורת" },
+    { v: "did_not_receive_treatment", l: "לא קיבלה טיפול בפועל" },
+    { v: "late_abortion_dc", l: "הפלה מאוחרת + גרידה" },
+    { v: "operative_hysteroscopy", l: "היסטרוסקופיה ניתוחית" },
+    { v: "curettage_removal", l: "הוצאת תוכן בקראוזה" },
+    { v: "elective_termination", l: "הפסקת הריון יזומה" },
+    { v: "other", l: "אחר" },
+  ];
+
+  function optionsHtml(options, selected) {
+    return options.map(function (o) {
+      return '<option value="' + o.v + '" ' + (selected === o.v ? "selected" : "") + '>' + esc(o.l) + '</option>';
+    }).join("");
+  }
+
+  function renderCorrectionBlock(rec) {
+    var html =
+      '<div class="correction-block">' +
+        '<div class="clabel">מה הסיווג הנכון לדעתך?</div>' +
+        '<select id="p1-correct-outcome"><option value="">— בחר/י סיווג —</option>' + optionsHtml(OUTCOME_OPTIONS, rec.correctedOutcome) + '</select>';
+    if (rec.correctedOutcome === "not_missed_abortion") {
+      html += '<select id="p1-correct-exclusion"><option value="">— סיבת החרגה (לא חובה) —</option>' + optionsHtml(EXCLUSION_OPTIONS, rec.correctedExclusion) + '</select>';
+    }
+    html += '</div>';
+    return html;
+  }
+
   function bindPhase1() {
     var ep = DATA[Math.min(state.phase1Index, DATA.length - 1)];
     document.querySelectorAll(".verdict-btn").forEach(function (btn) {
@@ -660,6 +725,25 @@
       noteEl.addEventListener("input", function () {
         var rec = state.phase1[ep.episode_id] || {};
         rec.note = noteEl.value;
+        state.phase1[ep.episode_id] = rec;
+        saveState();
+      });
+    }
+    var correctOutcomeEl = document.getElementById("p1-correct-outcome");
+    if (correctOutcomeEl) {
+      correctOutcomeEl.addEventListener("change", function () {
+        var rec = state.phase1[ep.episode_id] || {};
+        rec.correctedOutcome = correctOutcomeEl.value || null;
+        if (rec.correctedOutcome !== "not_missed_abortion") rec.correctedExclusion = null;
+        state.phase1[ep.episode_id] = rec;
+        saveState(); render();
+      });
+    }
+    var correctExclusionEl = document.getElementById("p1-correct-exclusion");
+    if (correctExclusionEl) {
+      correctExclusionEl.addEventListener("change", function () {
+        var rec = state.phase1[ep.episode_id] || {};
+        rec.correctedExclusion = correctExclusionEl.value || null;
         state.phase1[ep.episode_id] = rec;
         saveState();
       });
