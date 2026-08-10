@@ -1,0 +1,275 @@
+<title>מדריך לרופא/ה הבודק/ת — סקירת קידוד הפלה נדחית</title>
+<style>
+  :root {
+    --bg: #eef1ec;
+    --surface: #ffffff;
+    --surface-2: #e2e8e0;
+    --text: #17211b;
+    --text-muted: #56645b;
+    --accent: #0f6e5c;
+    --accent-strong: #0b5548;
+    --accent-soft: #d7ebe4;
+    --border: #c7d0c3;
+    --good: #2e7d4f;
+    --warn: #966a1e;
+    --critical: #a63a3a;
+    --mono: ui-monospace, "SF Mono", "Cascadia Mono", "Roboto Mono", Consolas, monospace;
+    --sans: "Segoe UI", "Arial Hebrew", Arial, "Helvetica Neue", sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #10140f; --surface: #161c15; --surface-2: #1e261c;
+      --text: #e7ece5; --text-muted: #9caa96;
+      --accent: #4fd9b8; --accent-strong: #79e6cb; --accent-soft: #1c352e;
+      --border: #303b2c; --good: #52c07e; --warn: #e0ab4a; --critical: #e08080;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --surface: #161c15; --surface-2: #1e261c;
+    --text: #e7ece5; --text-muted: #9caa96;
+    --accent: #4fd9b8; --accent-strong: #79e6cb; --accent-soft: #1c352e;
+    --border: #303b2c; --good: #52c07e; --warn: #e0ab4a; --critical: #e08080;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    direction: rtl;
+    line-height: 1.65;
+    font-size: 16px;
+  }
+  .doc { max-width: 760px; margin: 0 auto; padding: 40px 24px 100px; }
+
+  .doc-header { margin-bottom: 34px; }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--accent-strong);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  h1 { font-size: 28px; line-height: 1.25; margin: 0 0 10px; text-wrap: balance; }
+  .doc-header p.lede { font-size: 16px; color: var(--text-muted); margin: 0; max-width: 62ch; }
+
+  .link-box {
+    margin-top: 20px;
+    background: var(--accent-soft);
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    padding: 14px 16px;
+    font-size: 14.5px;
+  }
+  .link-box b { color: var(--accent-strong); }
+
+  h2 {
+    font-size: 20px;
+    margin: 42px 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  p { max-width: 66ch; }
+  ul { max-width: 62ch; padding-inline-start: 22px; }
+  li { margin-bottom: 6px; }
+
+  .step {
+    display: flex;
+    gap: 16px;
+    margin: 28px 0;
+    align-items: flex-start;
+  }
+  .step-num {
+    flex: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #ffffff;
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+  }
+  .step-body { flex: 1; min-width: 0; }
+  .step-body h3 { font-size: 16.5px; margin: 0 0 6px; }
+  .step-body p { margin: 0 0 6px; font-size: 14.5px; color: var(--text-muted); }
+
+  figure {
+    margin: 14px 0 4px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--surface);
+    box-shadow: 0 1px 2px rgba(23,33,27,0.06), 0 4px 14px rgba(23,33,27,0.05);
+  }
+  figure img { display: block; width: 100%; height: auto; }
+  figcaption {
+    font-size: 12px;
+    color: var(--text-muted);
+    padding: 8px 12px;
+    border-top: 1px solid var(--border);
+    background: var(--surface-2);
+    font-family: var(--mono);
+  }
+
+  .callout {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-right: 3px solid var(--accent);
+    border-radius: 3px;
+    padding: 14px 16px;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+  .callout.warn { border-right-color: var(--warn); }
+  .callout b { display: block; margin-bottom: 4px; font-size: 13px; }
+
+  .footer-note {
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 620px) {
+    .step { flex-direction: column; }
+  }
+</style>
+
+<div class="doc">
+  <div class="doc-header">
+    <div class="eyebrow">מדריך שימוש &middot; סקירת קידוד קליני</div>
+    <h1>מדריך לרופא/ה הבודק/ת — סקירת קידוד הפלה נדחית</h1>
+    <p class="lede">
+      במסגרת מחקר דוקטורט, 3 סוכני בינה מלאכותית עצמאיים קידדו 80 אפיזודות קליניות של הפלה נדחית מתוך רשומות אשפוז גולמיות.
+      לפני שממשיכים לקודד את כל שאר האפיזודות (כ-900 נוספות), אנחנו צריכים בדיקה קלינית שלך — לוודא שהסיווגים והנתונים שחולצו נכונים.
+    </p>
+    <div class="link-box">🔗 <b>קישור לכלי הסקירה:</b> <a href="https://claude.ai/code/artifact/a90f92d8-fbf1-4194-8525-e52a62da5104?open_in_browser=1&amp;via=user_open&amp;org=7985db36-1f1f-4df2-bad8-6a547ea61688" style="color:var(--accent-strong);">לחצו כאן לפתיחת הכלי</a></div>
+  </div>
+
+  <h2>מה המטרה</h2>
+  <p>
+    כל אפיזודה קודדה על ידי 3 "קודדים" עצמאיים (מודלי שפה), וההכרעה הסופית נקבעת לפי רוב קולות. המערכת כבר מסמנת אוטומטית
+    מקרים של אי-הסכמה בין הקודדים — אבל הסכמה בין שלושתם לא מבטיחה שהם צודקים. המשימה שלך: לעבור על האפיזודות ולוודא
+    שהקידוד תואם את מה שכתוב ברשומה הקלינית המקורית.
+  </p>
+  <p>העבודה מחולקת לשני שלבים:</p>
+  <ul>
+    <li><b>שלב 1 — סיווג ראשי:</b> על כל 80 האפיזודות. בודקים אם ההכרעה (הצלחה / כישלון / פתוח / לא רלוונטי / הוחרג) נכונה.</li>
+    <li><b>שלב 2 — שדות מובנים:</b> רק על אפיזודות שסווגו כ"הצלחה" או "כישלון" (13 אפיזודות). בודקים את הנתונים הקליניים הספציפיים שחולצו (היסטוריה מיילדותית, מעבדה, שבוע הריון וכו').</li>
+  </ul>
+
+  <h2>לפני שמתחילים</h2>
+  <p>לא צריך להתקין כלום ולא להירשם. פותחים את הקישור בכל דפדפן (גם בנייד), מקלידים שם, ומתחילים. ההתקדמות נשמרת אוטומטית באותו דפדפן — אפשר לסגור ולחזור מאוחר יותר.</p>
+
+  <h2>שלב 1 — סיווג ראשי, צעד אחר צעד</h2>
+
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      <h3>פתיחה והזנת שם</h3>
+      <p>בכניסה הראשונה מקלידים שם מלא ולוחצים "התחל/י סקירה". אם חוזרים לאותו דפדפן, מקלידים את אותו שם בדיוק כדי להמשיך מהמקום שעצרתם.</p>
+      <figure><img src="__IMG_01__" alt="מסך כניסה" /><figcaption>מסך הכניסה — הזנת שם</figcaption></figure>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      <h3>קוראים את הרשומה ובודקים את ההכרעה</h3>
+      <p>
+        מימין — הטקסט הקליני המקורי המלא. משמאל — ההכרעה הסופית (עם ציטוט תומך מהטקסט), ותשובות 3 הקודדים בנפרד.
+        אם ההכרעה נכונה — לוחצים <b>"✓ תקין"</b>. אפשר גם להוסיף הערה חופשית.
+      </p>
+      <figure><img src="__IMG_02__" alt="שלב 1 - תצוגת אפיזודה" /><figcaption>שלב 1 — טקסט מקור + הכרעה + 3 קודדים</figcaption></figure>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      <h3>אם ההכרעה שגויה</h3>
+      <p>לוחצים <b>"✕ לא תקין"</b> — נפתחת רשימה לבחירת הסיווג הנכון (ואם רלוונטי, גם סיבת ההחרגה). אפשר גם לפרט בהערה.</p>
+      <figure><img src="__IMG_03__" alt="סימון לא תקין ובחירת סיווג נכון" /><figcaption>בחירת הסיווג הנכון לאחר סימון "לא תקין"</figcaption></figure>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">4</div>
+    <div class="step-body">
+      <h3>אפיזודות הצלחה / כישלון — קישור לבדיקת שדות</h3>
+      <p>
+        באפיזודה שסווגה כ"הצלחה" או "כישלון" יופיע גם קישור <b>"לבדיקת שדות של אפיזודה זו"</b> — זו הדרך הישירה לעבור
+        לשלב 2 עבור האפיזודה הספציפית הזו, בלי לחפש אותה בנפרד.
+      </p>
+      <figure><img src="__IMG_04__" alt="קישור לבדיקת שדות" /><figcaption>קישור מהיר לבדיקת שדות של אפיזודת הצלחה/כישלון</figcaption></figure>
+      <div class="callout">
+        <b>שימו לב</b>
+        כפתור "שלב 2" בסרגל העליון פעיל רק כשעומדים על אפיזודת הצלחה/כישלון — באפיזודות אחרות הוא כבוי, כי אין להן שדות לבדיקה.
+      </div>
+    </div>
+  </div>
+
+  <h2>שלב 2 — בדיקת שדות מובנים, צעד אחר צעד</h2>
+  <p>שלב זה חל רק על 13 אפיזודות ה"הצלחה"/"כישלון". כאן בודקים את הנתונים הקליניים המדויקים שחולצו מהטקסט — ולא רק את הסיווג הכללי.</p>
+
+  <div class="step">
+    <div class="step-num">5</div>
+    <div class="step-body">
+      <h3>טבלת השדות</h3>
+      <p>
+        כל שורה = שדה קליני אחד (למשל "לויקוציטים", "שבוע הריון"). עמודת "הכרעה" מציגה את הערך הסופי, ועמודת "קודד 1/2/3"
+        מציגה מה כל קודד ענה בנפרד. שורות עם <span style="color:var(--warn);font-weight:700;">⚠ אי-הסכמה</span> מסומנות בפס כתום בצד — כדאי לתת להן תשומת לב מיוחדת.
+        ברירת המחדל: כל השדות נחשבים תקינים, מסמנים רק את מה שבאמת שגוי.
+      </p>
+      <figure><img src="__IMG_05__" alt="טבלת שדות - ברירת מחדל" /><figcaption>שלב 2 — טבלת השדות המלאה, לפני סימון</figcaption></figure>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">6</div>
+    <div class="step-body">
+      <h3>שדה שגוי — סימון וערך נכון</h3>
+      <p>
+        לוחצים <b>"סמן לא-תקין"</b>. נפתחת תיבת "ערך נכון" (תפריט כן/לא לשדות בוליאניים, מספר לשדות מספריים, או רשימת
+        אפשרויות לשדות כמו BHCG איכותי) ותיבת הערה חופשית — למה זה שגוי.
+      </p>
+      <figure><img src="__IMG_06__" alt="שדה מסומן לא תקין עם ערך נכון" /><figcaption>סימון שדה שגוי + הזנת הערך הנכון וההערה</figcaption></figure>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">7</div>
+    <div class="step-body">
+      <h3>שדה עם אי-הסכמה שההכרעה בו כן נכונה</h3>
+      <p>
+        בשורות עם ⚠ אי-הסכמה יש שני כפתורים: <b>"✓ ההכרעה תקינה"</b> (אם בדקתם וההכרעה נכונה למרות שהקודדים לא הסכימו)
+        ו-<b>"✕ לא תקין"</b>. חשוב ללחוץ על אחד מהם באופן מפורש — שורה שלא נגעו בה נחשבת "לא נבדקה", לא "מאושרת".
+      </p>
+      <figure><img src="__IMG_07__" alt="אישור הכרעה במקרה של אי הסכמה" /><figcaption>אישור מפורש שההכרעה נכונה, למרות אי-הסכמה בין הקודדים</figcaption></figure>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">8</div>
+    <div class="step-body">
+      <h3>בסיום — ייצוא התשובות</h3>
+      <p>
+        אחרי שעברתם על מה שרציתם לבדוק (אפשר גם באמצע העבודה, לא רק בסוף), לוחצים <b>"⬇ ייצוא תשובות"</b> בסרגל העליון.
+        יורד קובץ (JSON) עם כל התשובות שלכם. <b>שולחים את הקובץ הזה לגלית</b> (במייל/וואטסאפ) — זה מה שמאפשר לשלב את
+        המשוב שלכם בהמשך העבודה על הקודבוק.
+      </p>
+      <figure><img src="__IMG_08__" alt="כפתור ייצוא תשובות" /><figcaption>כפתור הייצוא בסרגל העליון</figcaption></figure>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    שאלות או תקלות? אפשר לפנות ישירות לגלית. תודה על הזמן והעזרה במחקר!
+  </div>
+</div>
