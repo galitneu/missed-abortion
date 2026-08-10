@@ -915,7 +915,7 @@
           '<div class="pos">אפיזודה ' + (idx + 1) + ' מתוך ' + phase2Episodes.length + ' (success/failure)</div>' +
           '<div class="nav-btns">' +
             '<button class="btn" id="p2-prev" ' + (idx === 0 ? "disabled" : "") + '>&larr; קודם</button>' +
-            '<button class="btn primary" id="p2-submit">שאר השדות תקינים — שמור והבא &rarr;</button>' +
+            '<button class="btn primary" id="p2-submit">שאר השדות תקינים — שמור וחזרה לרשימה &rarr;</button>' +
           '</div>' +
         '</div>' +
       '</div>';
@@ -981,11 +981,13 @@
     if (submitBtn) submitBtn.addEventListener("click", function () {
       var rec = getRec();
       rec.submitted = true;
-      if (state.phase2Index === phase2Episodes.length - 1) {
-        showToast("שלב 2 הושלם — אפשר לייצא את התשובות");
-      } else {
-        state.phase2Index = Math.min(phase2Episodes.length - 1, state.phase2Index + 1);
-      }
+      // Return to the general phase-1 flow (advanced past this episode) rather than jumping to
+      // the next success/failure episode inside phase 2 — that jump was disorienting since it
+      // skips non-adjacent episodes without any visual continuity.
+      var i1 = DATA.findIndex(function (e) { return e.episode_id === ep.episode_id; });
+      if (i1 >= 0) state.phase1Index = Math.min(DATA.length - 1, i1 + 1);
+      state.phase = 1;
+      showToast("האפיזודה נשמרה — חוזרים לרשימה הכללית");
       saveState(); render();
     });
   }
