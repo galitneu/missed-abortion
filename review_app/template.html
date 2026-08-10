@@ -591,8 +591,23 @@
   }
 
   // ---------- top bar ----------
+  function currentPhase1Episode() {
+    return DATA[Math.min(state.phase1Index, DATA.length - 1)];
+  }
+
+  // The "Phase 2" tab is only meaningful for the episode currently open in phase 1 — jumping
+  // there while looking at an excluded/open/not_applicable episode would land on an unrelated
+  // episode's fields, which is confusing. So it's enabled only when the current phase-1 episode
+  // actually has a fields review (success/failure), or once you're already inside phase 2.
+  function canGotoPhase2() {
+    if (state.phase === 2) return true;
+    var ep = currentPhase1Episode();
+    return !!(ep && ep.phase2);
+  }
+
   function renderTopbar() {
     var p1d = phase1Done(), p2d = phase2Done();
+    var p2ok = canGotoPhase2();
     return (
       '<div class="topbar">' +
         '<div class="brand">' +
@@ -602,7 +617,8 @@
         '</div>' +
         '<div class="phase-switch">' +
           '<button data-phase="1" class="' + (state.phase === 1 ? "active" : "") + '">שלב 1 · סיווג ראשי</button>' +
-          '<button data-phase="2" class="' + (state.phase === 2 ? "active" : "") + '" ' + (phase2Episodes.length ? "" : "disabled") + '>שלב 2 · שדות (הצלחה/כישלון)</button>' +
+          '<button data-phase="2" class="' + (state.phase === 2 ? "active" : "") + '" ' + (p2ok ? "" : "disabled") +
+            ' title="' + (p2ok ? "" : esc("זמין רק כשעומדים על אפיזודת הצלחה/כישלון")) + '">שלב 2 · שדות (הצלחה/כישלון)</button>' +
         '</div>' +
         '<div class="topbar-right">' +
           '<button class="btn" id="export-btn">⬇ ייצוא תשובות</button>' +
@@ -985,6 +1001,13 @@
       btn.addEventListener("click", function () {
         var p = parseInt(btn.getAttribute("data-phase"), 10);
         if (btn.disabled) return;
+        if (p === 2 && state.phase === 1) {
+          // Jump straight to the field review of the episode currently open in phase 1,
+          // not wherever phase 2 was last left — otherwise this lands on an unrelated episode.
+          var curEp = currentPhase1Episode();
+          var i2 = curEp ? phase2Episodes.findIndex(function (e) { return e.episode_id === curEp.episode_id; }) : -1;
+          if (i2 >= 0) state.phase2Index = i2;
+        }
         state.phase = p;
         saveState(); render();
       });
