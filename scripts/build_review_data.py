@@ -1,8 +1,8 @@
 import json, os
 
-SCRATCH = "/tmp/claude-0/-home-user-comfort-choice-helper/df71759e-1127-5ed0-ab07-ff2e70e7a1bc/scratchpad"
-RESULTS = os.path.join(SCRATCH, "coding_results_random80_v2.json")
-OUT = os.path.join(SCRATCH, "review_app", "review_data.json")
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+RESULTS = os.path.join(ROOT, "data", "coding_results", "random_80.json")
+OUT = os.path.join(ROOT, "review_app", "review_data.json")
 
 FIELD_LABELS = {
     "G": "הריונות (G)", "P": "לידות (P)", "NVD": "לידות רגילות", "CS": "ניתוחים קיסריים",
@@ -62,10 +62,10 @@ def field_type(f):
 
 def text_path(episode_id):
     if episode_id.startswith("RND2EP"):
-        d = "episode_texts_random2"
+        d = "random_40_batch2"
     else:
-        d = "episode_texts_random"
-    return os.path.join(SCRATCH, d, episode_id + ".txt")
+        d = "random_40_batch1"
+    return os.path.join(ROOT, "data", "raw_text", d, episode_id + ".txt")
 
 episodes = json.load(open(RESULTS, encoding="utf-8"))
 out = []
