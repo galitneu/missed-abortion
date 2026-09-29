@@ -34,7 +34,10 @@ OUTCOME_HE = {
 episodes = json.load(open(RESULTS, encoding="utf-8"))
 
 header = [
+    "טקסט_קליני_מקורי_מלא",
     "episode_id", "admission_nos", "age", "entry_date", "discharge_date",
+    "רלוונטי_למחקר", "סיבת_אי_רלוונטיות",
+    "עדיפות_בדיקה", "סיבת_עדיפות",
     "הכרעה_סוג_תוצאה", "הכרעה_סיבת_החרגה", "הכרעה_ציטוט_תומך",
     "קודד1_סוג_תוצאה", "קודד2_סוג_תוצאה", "קודד3_סוג_תוצאה", "הסכמה_מלאה_בסיווג",
     "חשד_לערבוב_רשומות", "הערת_ערבוב_רשומות", "הערת_קודד",
@@ -43,7 +46,15 @@ for f in FIELDS:
     header.append(f"{f}__הכרעה")
     header.append(f"{f}__קודד1_2_3")
 header += ["מספר_אי_הסכמות", "שדות_עם_אי_הסכמה", "האם_נכון_(למילוי_ע\"י_רופא/ה)",
-           "אם_לא_נכון__הערך_הנכון", "הערת_רופא/ה", "טקסט_קליני_מקורי_מלא"]
+           "אם_לא_נכון__הערך_הנכון", "הערת_רופא/ה"]
+
+# "Relevant to the study" = she actually attempted medical treatment first (success/failure/open),
+# as opposed to choosing D&C from the outset (not_applicable) or turning out not to be a genuine
+# missed-abortion case at all (not_missed_abortion / excluded).
+NOT_RELEVANT_REASONS = {
+    "not_applicable": "גרידה נבחרה מלכתחילה, ללא ניסיון טיפול תרופתי",
+    "not_missed_abortion": "הוחרגה — לא מקרה של הפלה נדחית",
+}
 
 rows = []
 for ep in episodes:
@@ -51,9 +62,29 @@ for ep in episodes:
     c1, c2, c3 = coders.get(1, {}), coders.get(2, {}), coders.get(3, {})
     consensus = ep["consensus"]
     disagree_fields = {d["field"] for d in ep["disagreements"]}
+    outcome = consensus.get("outcome_category")
 
     outcome_vals = [c1.get("outcome_category"), c2.get("outcome_category"), c3.get("outcome_category")]
-    unanimous = "כן" if len(set(outcome_vals)) == 1 else "לא"
+    unanimous = len(set(outcome_vals)) == 1
+    mixup = bool(consensus.get("possible_record_mixup"))
+    n_disagree = len(ep["disagreements"])
+
+    relevant = outcome not in NOT_RELEVANT_REASONS
+    not_relevant_reason = NOT_RELEVANT_REASONS.get(outcome, "")
+
+    # Priority: flag cases most likely to need a human judgment call, so reviewers with limited
+    # time can triage instead of reading all 80 top to bottom.
+    priority_reasons = []
+    if mixup:
+        priority_reasons.append("חשד לערבוב רשומות")
+    if not unanimous:
+        priority_reasons.append("אי-הסכמה בסיווג הראשי בין הקודדים")
+    if n_disagree >= 3:
+        priority_reasons.append(f"{n_disagree} אי-הסכמות בשדות")
+    if priority_reasons:
+        priority = "גבוהה" if (mixup or not unanimous) else "בינונית"
+    else:
+        priority = "רגילה"
 
     text_dir = text_dir_for(ep["episode_id"])
     full_text = ""
@@ -63,23 +94,26 @@ for ep in episodes:
             full_text = open(p, encoding="utf-8").read()
 
     row = [
+        full_text,
         ep["episode_id"], ", ".join(str(a) for a in ep["admission_nos"]), ep.get("age"),
         ep.get("entry_date"), ep.get("discharge_date"),
-        OUTCOME_HE.get(consensus.get("outcome_category"), consensus.get("outcome_category")),
+        "כן" if relevant else "לא", not_relevant_reason,
+        priority, "; ".join(priority_reasons),
+        OUTCOME_HE.get(outcome, outcome),
         consensus.get("exclusion_reason") or "",
         consensus.get("outcome_evidence_quote") or "",
         OUTCOME_HE.get(c1.get("outcome_category"), c1.get("outcome_category")),
         OUTCOME_HE.get(c2.get("outcome_category"), c2.get("outcome_category")),
         OUTCOME_HE.get(c3.get("outcome_category"), c3.get("outcome_category")),
-        unanimous,
-        "כן" if consensus.get("possible_record_mixup") else "לא",
+        "כן" if unanimous else "לא",
+        "כן" if mixup else "לא",
         consensus.get("record_mixup_note") or "",
         consensus.get("notes") or "",
     ]
     for f in FIELDS:
         row.append(consensus.get(f))
         row.append(" / ".join(str(coders.get(i, {}).get(f)) for i in (1, 2, 3)))
-    row += [len(ep["disagreements"]), ", ".join(sorted(disagree_fields)), "", "", "", full_text]
+    row += [n_disagree, ", ".join(sorted(disagree_fields)), "", "", ""]
     rows.append(row)
 
 with open(OUT, "w", encoding="utf-8-sig", newline="") as f:
