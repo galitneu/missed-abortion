@@ -1,0 +1,818 @@
+{
+  "reviewer_name": "דניאל בן עיון",
+  "exported_at": "2026-10-10T13:42:45.938Z",
+  "phase1_reviewed": 80,
+  "phase1_total": 80,
+  "phase2_reviewed": 11,
+  "phase2_total": 13,
+  "phase1": [
+    {
+      "episode_id": "RNDEP001",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RNDEP002",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RNDEP003",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RNDEP004",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RNDEP005",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RNDEP006",
+      "verdict": "incorrect",
+      "note": "מקרה גבולי כי הגרידה הייתה שילוב של כישלון טיפול ואנמיה סימפטומטית.",
+      "corrected_outcome": "failure",
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RNDEP007",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RNDEP008",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RNDEP009",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RNDEP010",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RNDEP011",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RNDEP012",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RNDEP013",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RNDEP014",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RNDEP015",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RNDEP016",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RNDEP017",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RNDEP018",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RNDEP019",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RNDEP020",
+      "verdict": "correct",
+      "note": "אין ערבוב רשומות, הרשומה הראשונה היא טמפלייט שטרם מילאו",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RNDEP021",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RNDEP022",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RNDEP023",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RNDEP024",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RNDEP025",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RNDEP026",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RNDEP027",
+      "verdict": null,
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RNDEP028",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RNDEP029",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RNDEP030",
+      "verdict": "unsure",
+      "note": "זה מקרה ביניים, היא לא ביצעה גרידה אבל הייתה לה הפלה בלתי שלמה בעקבות הטיפול והיא בוסף השלימה טיפול תרופתי במחלקה",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RNDEP031",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RNDEP032",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RNDEP033",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RNDEP034",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RNDEP035",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RNDEP036",
+      "verdict": "correct",
+      "note": "יש ערבוב רשומות",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RNDEP037",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RNDEP038",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RNDEP039",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RNDEP040",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RND2EP001",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RND2EP002",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RND2EP003",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RND2EP004",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RND2EP005",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RND2EP006",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RND2EP007",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RND2EP008",
+      "verdict": "correct",
+      "note": "הרשומה הראשונה היא טמפלייט, זה לא ערבוב רשומות.",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RND2EP009",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RND2EP010",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RND2EP011",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RND2EP012",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RND2EP013",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RND2EP014",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RND2EP015",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RND2EP016",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RND2EP017",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RND2EP018",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RND2EP019",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RND2EP020",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RND2EP021",
+      "verdict": "incorrect",
+      "note": "מעוניינת בגרידה",
+      "corrected_outcome": "not_applicable",
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RND2EP022",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RND2EP023",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RND2EP024",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RND2EP025",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RND2EP026",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RND2EP027",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RND2EP028",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RND2EP029",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RND2EP030",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RND2EP031",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RND2EP032",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RND2EP033",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RND2EP034",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RND2EP035",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RND2EP036",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RND2EP037",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RND2EP038",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RND2EP039",
+      "verdict": "incorrect",
+      "note": "",
+      "corrected_outcome": "not_applicable",
+      "corrected_exclusion_reason": null
+    },
+    {
+      "episode_id": "RND2EP040",
+      "verdict": "correct",
+      "note": "",
+      "corrected_outcome": null,
+      "corrected_exclusion_reason": null
+    }
+  ],
+  "phase2": [
+    {
+      "episode_id": "RNDEP004",
+      "submitted": true,
+      "fields": [
+        {
+          "field": "WBC",
+          "flagged": false,
+          "confirmed": true,
+          "note": "",
+          "correct_value": null
+        }
+      ]
+    },
+    {
+      "episode_id": "RNDEP016",
+      "submitted": true,
+      "fields": [
+        {
+          "field": "D_C_treatment",
+          "flagged": true,
+          "confirmed": false,
+          "note": "תיעוד מחדר ניתוח אמבולטורי",
+          "correct_value": "true"
+        }
+      ]
+    },
+    {
+      "episode_id": "RNDEP022",
+      "submitted": true,
+      "fields": [
+        {
+          "field": "G",
+          "flagged": false,
+          "confirmed": true,
+          "note": "",
+          "correct_value": null
+        },
+        {
+          "field": "FU1_lining_over15mm",
+          "flagged": false,
+          "confirmed": true,
+          "note": "",
+          "correct_value": null
+        },
+        {
+          "field": "FU2_lining_over15mm",
+          "flagged": false,
+          "confirmed": true,
+          "note": "",
+          "correct_value": null
+        }
+      ]
+    },
+    {
+      "episode_id": "RNDEP023",
+      "submitted": true,
+      "fields": [
+        {
+          "field": "Ab_total",
+          "flagged": false,
+          "confirmed": true,
+          "note": "",
+          "correct_value": null
+        }
+      ]
+    },
+    {
+      "episode_id": "RNDEP030",
+      "submitted": true,
+      "fields": []
+    },
+    {
+      "episode_id": "RNDEP033",
+      "submitted": true,
+      "fields": [
+        {
+          "field": "smoking",
+          "flagged": true,
+          "confirmed": false,
+          "note": "",
+          "correct_value": "null"
+        },
+        {
+          "field": "GA_LMP_weeks",
+          "flagged": true,
+          "confirmed": false,
+          "note": "",
+          "correct_value": "6"
+        },
+        {
+          "field": "GA_US_weeks",
+          "flagged": true,
+          "confirmed": false,
+          "note": "",
+          "correct_value": "5"
+        },
+        {
+          "field": "FU1_pain",
+          "flagged": false,
+          "confirmed": true,
+          "note": "",
+          "correct_value": null
+        },
+        {
+          "field": "FU1_bleeding",
+          "flagged": false,
+          "confirmed": true,
+          "note": "",
+          "correct_value": null
+        }
+      ]
+    },
+    {
+      "episode_id": "RND2EP006",
+      "submitted": true,
+      "fields": [
+        {
+          "field": "GA_LMP_weeks",
+          "flagged": true,
+          "confirmed": false,
+          "note": "",
+          "correct_value": "10"
+        },
+        {
+          "field": "GA_US_weeks",
+          "flagged": true,
+          "confirmed": false,
+          "note": "",
+          "correct_value": "7"
+        },
+        {
+          "field": "FU1_gestational",
+          "flagged": true,
+          "confirmed": false,
+          "note": "",
+          "correct_value": "false"
+        },
+        {
+          "field": "FU1_lining_over15mm",
+          "flagged": true,
+          "confirmed": false,
+          "note": "",
+          "correct_value": "false"
+        },
+        {
+          "field": "FU1_bleeding",
+          "flagged": true,
+          "confirmed": false,
+          "note": "",
+          "correct_value": "false"
+        }
+      ]
+    },
+    {
+      "episode_id": "RND2EP010",
+      "submitted": true,
+      "fields": []
+    },
+    {
+      "episode_id": "RND2EP020",
+      "submitted": true,
+      "fields": [
+        {
+          "field": "D_C_treatment",
+          "flagged": false,
+          "confirmed": true,
+          "note": "",
+          "correct_value": null
+        },
+        {
+          "field": "FU1_lining_over15mm",
+          "flagged": true,
+          "confirmed": false,
+          "note": "",
+          "correct_value": "true"
+        }
+      ]
+    },
+    {
+      "episode_id": "RND2EP022",
+      "submitted": true,
+      "fields": [
+        {
+          "field": "GA_LMP_weeks",
+          "flagged": true,
+          "confirmed": false,
+          "note": "",
+          "correct_value": "11.5"
+        },
+        {
+          "field": "GA_US_weeks",
+          "flagged": true,
+          "confirmed": false,
+          "note": "",
+          "correct_value": "6"
+        }
+      ]
+    },
+    {
+      "episode_id": "RND2EP031",
+      "submitted": true,
+      "fields": [
+        {
+          "field": "GA_LMP_weeks",
+          "flagged": true,
+          "confirmed": false,
+          "note": "",
+          "correct_value": "7"
+        },
+        {
+          "field": "GA_US_weeks",
+          "flagged": true,
+          "confirmed": false,
+          "note": "",
+          "correct_value": "5"
+        },
+        {
+          "field": "US_finding",
+          "flagged": false,
+          "confirmed": true,
+          "note": "",
+          "correct_value": null
+        },
+        {
+          "field": "D_C_treatment",
+          "flagged": true,
+          "confirmed": false,
+          "note": "",
+          "correct_value": "true"
+        },
+        {
+          "field": "FU1_bleeding",
+          "flagged": false,
+          "confirmed": true,
+          "note": "",
+          "correct_value": null
+        },
+        {
+          "field": "FU1_pain",
+          "flagged": false,
+          "confirmed": true,
+          "note": "",
+          "correct_value": null
+        }
+      ]
+    }
+  ]
+}
